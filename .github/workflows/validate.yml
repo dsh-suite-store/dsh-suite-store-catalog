@@ -26,6 +26,12 @@ on:
   # will keep missing one; validating every PR is cheap by comparison.
   #
   # `push` keeps its filter: only a submission change warrants a release.
+  # `workflow_dispatch` exists to VALIDATE the npm trusted-publishing
+  # configuration: npm requires one real publish through the new publisher
+  # before it marks the rule as working, and a tooling-only change does not
+  # match the `push` paths below. Manual runs use the same build and publish
+  # jobs and the same OIDC path, so what they prove is what a push proves.
+  workflow_dispatch:
   pull_request_target:
   push:
     branches: [main]
@@ -295,7 +301,7 @@ jobs:
   # Splitting the jobs is: this one never sees the token, and the publish job
   # below never checks out or builds the repository.
   build:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -430,7 +436,7 @@ jobs:
   # Both modes publish the same bytes the build job produced.
   publish:
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
