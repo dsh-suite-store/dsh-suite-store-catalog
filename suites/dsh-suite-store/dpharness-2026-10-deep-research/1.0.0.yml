@@ -1,0 +1,20 @@
+# 来源：DPharness / DeepSeek Harness Hub — https://dpharness.com/sets/dsh-deep-research?period=2026-10
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dpharness-2026-10-deep-research
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '深度研究套装（2026-10）'
+  en: 'Deep Research Set (2026-10)'
+summary:
+  zh: '引用文件、生成可核验的行业研报，并记录排障经验。'
+  en: 'Attach files, verify reports, log fixes.'
+category:
+  primary: academic-research
+  secondary: deep-research
+members:
+  - plugin: 'FSMargoo/dsh-at-file'
+  - plugin: 'dsh-market/dsh-market'
+  - plugin: 'PerryLink/dsh-industry-research'
+  - plugin: 'PerryLink/dsh-research-report'
+  - plugin: 'Ikalus1988/MisakaNet'

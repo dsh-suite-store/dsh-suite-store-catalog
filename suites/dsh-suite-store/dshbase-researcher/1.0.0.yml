@@ -1,0 +1,16 @@
+id: dshbase-researcher
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '研究者文献工作台'
+  en: 'Researcher Literature Workbench'
+summary:
+  zh: '学术检索、Zotero 读文献，还能联网搜索并抓取网页正文'
+  en: 'Scholar, Zotero, search and page reading'
+category:
+  primary: academic-research
+members:
+  - plugin: lzszq/dsh-scholar
+  - plugin: Vncntvx/dsh-zotero
+  - plugin: liustack/modsearch
+  - plugin: 2672243194/dsh-read-url

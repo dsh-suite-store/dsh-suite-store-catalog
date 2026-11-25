@@ -1,0 +1,1113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dsh-suite-store/dsh-suite-store-catalog/schema/bundle.schema.json",
+  "title": "Suite bundle submission",
+  "description": "One file per bundle version, at suites/<owner>/<bundle_id>/<version>.yml. Path and body must agree: CI checks G1 before this schema runs. Member facts are NOT supplied here — they come from the awesome-dsh-plugin plugins.json index at build time.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "owner",
+    "version",
+    "title",
+    "summary",
+    "category",
+    "members"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Bundle id. Must equal the directory name.",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,38}$"
+    },
+    "owner": {
+      "type": "string",
+      "description": "GitHub login. Must equal the parent directory and the PR author.",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9]|-(?=[A-Za-z0-9])){0,38}$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semver. Must equal the file name without .yml.",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "title": {
+      "$ref": "#/$defs/localized"
+    },
+    "summary": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/localized"
+        },
+        {
+          "properties": {
+            "zh": {
+              "maxLength": 40
+            },
+            "en": {
+              "maxLength": 40
+            }
+          }
+        }
+      ],
+      "description": "One sentence per language, at most 40 characters each (G12)."
+    },
+    "description": {
+      "$ref": "#/$defs/localized"
+    },
+    "category": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary"
+      ],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "A scenario category: one of the primaries in schema/categories.json.",
+          "enum": [
+            "getting-started",
+            "productivity",
+            "ui-beautify",
+            "plugin-management",
+            "literary-writing",
+            "technical-writing",
+            "design-creative",
+            "multimedia",
+            "development",
+            "code-review",
+            "architecture",
+            "data-science",
+            "academic-research",
+            "web-search",
+            "office-automation",
+            "finance-ops",
+            "legal",
+            "education",
+            "lifestyle",
+            "vision",
+            "voice",
+            "memory",
+            "context-session",
+            "agent-teams",
+            "model-access",
+            "im-bridges",
+            "remote-wsl",
+            "security-audit",
+            "usage-billing",
+            "entertainment"
+          ]
+        },
+        "secondary": {
+          "type": "string",
+          "description": "Optional chip. When present it must be one of the secondary slugs under the chosen primary (see schema/categories.json)."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "getting-started"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "daily-driver",
+                  "zero-config",
+                  "beginner-friendly",
+                  "starter-kit"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "productivity"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "task-board",
+                  "quick-capture",
+                  "side-question",
+                  "notifications",
+                  "spend-wallet",
+                  "focus-timer",
+                  "shortcuts",
+                  "templates",
+                  "automation",
+                  "multi-task"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "ui-beautify"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "themes",
+                  "sidebar",
+                  "wallpaper",
+                  "status-bar",
+                  "animations",
+                  "glassmorphism",
+                  "layout",
+                  "typography",
+                  "icons"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "plugin-management"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "marketplace",
+                  "discovery",
+                  "installer",
+                  "updater",
+                  "enable-disable",
+                  "dependency",
+                  "backup-restore",
+                  "catalog",
+                  "health-check",
+                  "permissions"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "literary-writing"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "long-form",
+                  "novel",
+                  "essay",
+                  "anti-ai-tone",
+                  "proofreading",
+                  "markdown-preview",
+                  "typesetting",
+                  "outline",
+                  "worldbuilding",
+                  "export-publish"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "technical-writing"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "api-docs",
+                  "readme",
+                  "diagrams",
+                  "code-blocks",
+                  "docx-export",
+                  "pdf-render",
+                  "changelog",
+                  "knowledge-base",
+                  "collaborative-doc",
+                  "versioned-docs"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "design-creative"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "vision-bridge",
+                  "image-gen",
+                  "design-preview",
+                  "ui-gen",
+                  "ocr-layout",
+                  "color-palette",
+                  "typography-design",
+                  "asset-library",
+                  "vector-graphics"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "multimedia"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "storyboard",
+                  "video-edit",
+                  "pptx",
+                  "3d-assets",
+                  "subtitles",
+                  "screen-record",
+                  "image-animation",
+                  "final-render"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "development"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "terminal-tui",
+                  "lsp",
+                  "git-integration",
+                  "file-mentions",
+                  "code-navigation",
+                  "debugging",
+                  "snippets",
+                  "workspace",
+                  "refactoring",
+                  "dev-server"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "code-review"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "subagent-review",
+                  "simplify",
+                  "lint",
+                  "test-gen",
+                  "diff-review",
+                  "approval-gate",
+                  "pr-comments"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "architecture"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "repo-graph",
+                  "sequence-diagram",
+                  "flow-diagram",
+                  "dependency-graph",
+                  "system-design",
+                  "uml",
+                  "data-flow",
+                  "lifecycle",
+                  "interactive-diagram"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "data-science"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "chat-analytics",
+                  "math-compute",
+                  "dataframe",
+                  "visualization",
+                  "spreadsheet",
+                  "csv-json",
+                  "statistics",
+                  "notebooks",
+                  "sql",
+                  "ml-tools"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "academic-research"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "paper-search",
+                  "zotero",
+                  "citation",
+                  "literature-triage",
+                  "evidence-map",
+                  "thesis-outline",
+                  "cn-academic",
+                  "deep-research",
+                  "report-engine",
+                  "offline-mode"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "web-search"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "keyless-search",
+                  "multi-source",
+                  "agent-browser",
+                  "web-scrape",
+                  "url-reader",
+                  "search-ui",
+                  "citations",
+                  "x-search",
+                  "bookmark",
+                  "offline-fallback"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "office-automation"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "report-gen",
+                  "brief-gen",
+                  "meeting-notes",
+                  "email",
+                  "document-workflow",
+                  "data-agent",
+                  "team-agent",
+                  "gongwen",
+                  "visual-card"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "finance-ops"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "excel-chat",
+                  "ledger",
+                  "invoice",
+                  "tax",
+                  "date-calc",
+                  "office-suite",
+                  "anydoc",
+                  "balance",
+                  "cost-split",
+                  "statement"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "legal"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "contract-review",
+                  "law-lookup",
+                  "legal-writing",
+                  "compliance",
+                  "case-law",
+                  "clause-lib",
+                  "risk-flag",
+                  "deadline",
+                  "evidence",
+                  "dispute"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "education"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "explain",
+                  "mindmap",
+                  "tutor",
+                  "courseware",
+                  "classroom",
+                  "quiz",
+                  "study-path",
+                  "memory-aid",
+                  "paper-reading"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "lifestyle"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "info-lookup",
+                  "price-compare",
+                  "errands",
+                  "travel-route",
+                  "im-push",
+                  "video-recap",
+                  "map-tools",
+                  "pocket",
+                  "computer-use",
+                  "daily-planner"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "vision"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "image-qa",
+                  "ocr",
+                  "multi-image",
+                  "long-screenshot",
+                  "screenshot-to-ui",
+                  "grounding",
+                  "pixel-diff",
+                  "vision-router",
+                  "clipboard",
+                  "svg-trace"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "voice"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "tts",
+                  "voice-input",
+                  "transcribe",
+                  "voice-clone",
+                  "audio-player",
+                  "podcast",
+                  "sound-effects",
+                  "music-gen",
+                  "wake-word",
+                  "multi-speaker"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "memory"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "cross-session",
+                  "memory-graph",
+                  "memory-evolve",
+                  "mnemon",
+                  "core-memory",
+                  "episodic",
+                  "semantic",
+                  "distillation",
+                  "memory-provenance",
+                  "memory-ui"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "context-session"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "context-insight",
+                  "rewind",
+                  "snapshot",
+                  "archive",
+                  "session-map",
+                  "handoff",
+                  "chat-import",
+                  "compaction",
+                  "branch",
+                  "recovery"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "agent-teams"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "multi-agent",
+                  "subagent",
+                  "model-routing",
+                  "advisor-chain",
+                  "role-persona",
+                  "delegation",
+                  "review-agent",
+                  "orchestration",
+                  "shared-memory",
+                  "team-dashboard"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "model-access"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "subscription",
+                  "codex",
+                  "command-code",
+                  "cline-pass",
+                  "workbuddy",
+                  "free-model",
+                  "account-pool",
+                  "provider-bridge",
+                  "model-switch",
+                  "quota"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "im-bridges"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "feishu",
+                  "wechat",
+                  "telegram",
+                  "dingtalk",
+                  "qq",
+                  "wecom",
+                  "slack",
+                  "discord",
+                  "whatsapp",
+                  "multi-channel"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "remote-wsl"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "mobile-remote",
+                  "ssh-workspace",
+                  "qr-pairing",
+                  "relay",
+                  "webrtc",
+                  "device-auth",
+                  "wsl-interop",
+                  "file-sync",
+                  "remote-terminal",
+                  "multi-instance"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "security-audit"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "local-scan",
+                  "permission-gate",
+                  "risk-review",
+                  "command-guard",
+                  "credential-check",
+                  "sandbox",
+                  "audit-log",
+                  "leak-detect",
+                  "dependency-audit",
+                  "vulnerability"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "usage-billing"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "token-count",
+                  "cost-meter",
+                  "usage-stats",
+                  "billing-panel",
+                  "balance-widget",
+                  "budget",
+                  "peak-offpeak",
+                  "heatmap",
+                  "per-model",
+                  "multi-provider"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "primary": {
+                "const": "entertainment"
+              }
+            },
+            "required": [
+              "primary"
+            ]
+          },
+          "then": {
+            "properties": {
+              "secondary": {
+                "enum": [
+                  "desktop-pet",
+                  "meme",
+                  "bili",
+                  "diary",
+                  "persona",
+                  "mini-game",
+                  "companion",
+                  "fun-widget"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]{0,23}$"
+      },
+      "maxItems": 8,
+      "uniqueItems": true
+    },
+    "cover": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^https://(?:github\\.com|raw\\.githubusercontent\\.com)/\\S+\\.(?:(?:[Pp][Nn][Gg])|(?:[Jj][Pp][Ee]?[Gg])|(?:[Ww][Ee][Bb][Pp]))(?:\\?\\S*)?$",
+          "description": "GitHub-hosted raster image (png/jpg/jpeg/webp), either on raw.githubusercontent.com or a github.com raw/releases URL (G11). Third-party hosts and SVG are refused."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "icon": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^https://(?:github\\.com|raw\\.githubusercontent\\.com)/\\S+\\.(?:(?:[Pp][Nn][Gg])|(?:[Jj][Pp][Ee]?[Gg])|(?:[Ww][Ee][Bb][Pp]))(?:\\?\\S*)?$",
+          "description": "Optional GitHub-hosted bitmap (png/jpg/jpeg/webp) used as the market card icon; omit to fall back to the author's avatar. Third-party hosts and SVG are refused (G11)."
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Small square image for the card and the detail sheet. Separate from `cover`, which is a wide banner: a fallback to an avatar belongs on an icon, not on a hero image."
+    },
+    "postInstall": {
+      "$ref": "#/$defs/localized"
+    },
+    "capabilityRedLines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "$ref": "#/$defs/localized"
+          },
+          "members": {
+            "type": "array",
+            "description": "Member references (owner/name) this warning applies to.",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^(?:https://github\\.com/)?[A-Za-z0-9][A-Za-z0-9-]{0,38}/[A-Za-z0-9][A-Za-z0-9._-]{0,99}(?:#[A-Za-z0-9._/-]+)?$"
+            }
+          }
+        }
+      }
+    },
+    "members": {
+      "type": "array",
+      "description": "2 to 10 members. Each names a plugin already in the awesome-dsh-plugin index; npm name, version, description, capabilities and stars are resolved at build time. Structural uniqueness only — `owner/name` vs its URL form is checked by scripts/validate.mjs (G4).",
+      "minItems": 2,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/member"
+      }
+    }
+  },
+  "$defs": {
+    "localized": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "en"
+      ],
+      "description": "`en` is required; `zh` is optional and falls back to `en` (scripts/validate.mjs applies the fallback).",
+      "properties": {
+        "zh": {
+          "type": "string",
+          "minLength": 1
+        },
+        "en": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "member": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plugin"
+      ],
+      "properties": {
+        "plugin": {
+          "type": "string",
+          "description": "GitHub repository as owner/name (a full https://github.com/... URL is accepted). Must exist in the plugin index. This is the ONLY required member field.",
+          "pattern": "^(?:https://github\\.com/)?[A-Za-z0-9][A-Za-z0-9-]{0,38}/[A-Za-z0-9][A-Za-z0-9._-]{0,99}(?:#[A-Za-z0-9._/-]+)?$"
+        },
+        "reason": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/localized"
+            }
+          ],
+          "description": "Optional. Why this member is in the suite; shown in the install sheet when present."
+        },
+        "requires": {
+          "type": "array",
+          "description": "Optional. Other members (as owner/name) this one depends on. Existence and acyclicity are checked by scripts/validate.mjs (G4), not by this schema.",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9-]{0,38}/[A-Za-z0-9][A-Za-z0-9._-]{0,99}(?:#[A-Za-z0-9._/-]+)?$"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

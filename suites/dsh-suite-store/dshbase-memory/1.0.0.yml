@@ -1,0 +1,18 @@
+id: dshbase-memory
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '跨会话长期记忆'
+  en: 'Long-Term Memory Across Sessions'
+summary:
+  zh: '跨会话记住项目背景，还能追溯记忆来源'
+  en: 'Cross-session memory with cited facts'
+
+category:
+  primary: memory
+
+members:
+  - plugin: 'csyangwen/dsh-memory-evolve'
+  - plugin: 'omdsh-dev/dsh-mnemon'
+  - plugin: 'Jesse-njx/dsh-memory'

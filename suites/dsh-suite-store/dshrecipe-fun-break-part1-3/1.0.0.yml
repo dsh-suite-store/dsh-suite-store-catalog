@@ -1,0 +1,15 @@
+id: dshrecipe-fun-break-part1-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '桌宠、小游戏与表情'
+  en: 'Pet, game and emoji fun'
+summary:
+  zh: '鲸鱼桌宠、开发升级与 AI 回复自动加表情。'
+  en: 'Whale pet, dev XP and emoji replies.'
+category:
+  primary: lifestyle
+members:
+  - plugin: nzl153/dsh-pet-whale
+  - plugin: lucky8197/dsh-devquest
+  - plugin: hellodigua/dsh-emoji

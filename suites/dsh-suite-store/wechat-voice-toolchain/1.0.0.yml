@@ -1,0 +1,18 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：banzhangdeerfenzhiyi — https://github.com/banzhangdeerfenzhiyi/dsh-voicepack-plugin
+# 证据：dsh-voicepack-plugin README「插件生态与配合使用」原文把这套工具链拆成独立仓库分层：wechat-agent-bundle（基础设施）、dsh-wechat-deploy-plugin（Hook 体检）、dsh-voicepack-plugin（15 Edge 音色 + RVC 换音色语音条）、dsh-qqmusic-plugin（点歌 + AI 翻唱语音条）；并写明「三个插件共用同一条 Edge TTS / RVC → SILK → 本机 hook 语音通道，互不替换」。三个 DSH 插件成员在索引中全 OK；wechat-agent-bundle 是安装包而非插件
+id: wechat-voice-toolchain
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '微信语音工具链'
+  en: 'WeChat voice toolchain'
+summary:
+  zh: 'Hook 体检、多音色语音包与点歌翻唱一条龙'
+  en: 'Hook checks, voice packs, QQ singing'
+category:
+  primary: voice
+members:
+  - plugin: "banzhangdeerfenzhiyi/dsh-wechat-deploy-plugin"
+  - plugin: "banzhangdeerfenzhiyi/dsh-voicepack-plugin"
+  - plugin: "banzhangdeerfenzhiyi/dsh-qqmusic-plugin"

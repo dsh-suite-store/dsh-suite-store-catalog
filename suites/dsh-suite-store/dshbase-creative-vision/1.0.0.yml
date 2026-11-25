@@ -1,0 +1,16 @@
+id: dshbase-creative-vision
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '创意视觉画布'
+  en: 'Creative Vision Canvas'
+summary:
+  zh: '让纯文本模型看图问答，并在回复里设计交互界面'
+  en: 'Image Q&A and UI design for text models'
+category:
+  primary: design-creative
+members:
+  - plugin: liustack/modlens
+  - plugin: Anionex/dsh-vision-toolkit
+  - plugin: ZSeven-W/dsh-openpencil
+  - plugin: omdsh-dev/dsh-genui

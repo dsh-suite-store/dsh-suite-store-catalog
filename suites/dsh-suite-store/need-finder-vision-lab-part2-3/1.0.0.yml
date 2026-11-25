@@ -1,0 +1,14 @@
+id: need-finder-vision-lab-part2-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '图片理解与生成'
+  en: 'Image Understanding & Generation'
+summary:
+  zh: '让模型看懂图片，还能生成新图。'
+  en: 'See images and generate new ones.'
+category:
+  primary: multimedia
+members:
+  - plugin: s3yf1337/dsh-easyvision
+  - plugin: dickpy/dsh-imagegen

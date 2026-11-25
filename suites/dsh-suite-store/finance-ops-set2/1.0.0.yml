@@ -1,0 +1,16 @@
+# 来源：https://github.com/PerryLink/dsh-plugins — 真实发布包的连续子集（成员逐字，未增删替换）
+id: finance-ops-set2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '银行与费用对账'
+  en: 'Bank and expense reconciliation'
+summary:
+  zh: '核对银行流水、应付三单与差旅费用。'
+  en: 'Bank, AP and travel expense checks.'
+category:
+  primary: finance-ops
+members:
+  - plugin: PerryLink/dsh-bankrec
+  - plugin: PerryLink/dsh-ap-three-way
+  - plugin: PerryLink/dsh-travel-recon

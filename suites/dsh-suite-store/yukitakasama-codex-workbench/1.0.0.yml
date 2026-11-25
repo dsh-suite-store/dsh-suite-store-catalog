@@ -1,0 +1,25 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：yukitakasama — https://github.com/yukitakasama/better-deepseek-harness-codex
+# 证据：README「插件清单（随包 10 个）」逐字列出 10 个 npm 坐标：@michengai/dsh-codex-ui、@michengai/dsh-code-review、@michengai/dsh-simplify、@michengai/dsh-btw、dsh-cost-meter、dsh-context、dsh-pet、@linxin666/dsh-client-ui-git-graph、@nanmicoder/dsh-agent-teams、dsh-plugin-subagent-director；面向 Coding 用户的 Codex 风格整合包，代码审查与简化为核心。按索引 
+id: yukitakasama-codex-workbench
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: 'Codex 风格编码工作台'
+  en: 'Codex coding workbench'
+summary:
+  zh: '审查简化、Codex 界面、Git 图谱与多代理协作'
+  en: 'Review, Codex UI, Git graph, agent teams'
+category:
+  primary: code-review
+members:
+  - plugin: "MichengAI/dsh-codex-ui"
+  - plugin: "MichengAI/dsh-code-review"
+  - plugin: "MichengAI/dsh-simplify"
+  - plugin: "MichengAI/dsh-btw"
+  - plugin: "Han-1413141/dsh-cost-meter"
+  - plugin: "bowenliang123/dsh-context"
+  - plugin: "PC2005-cloud/dsh-pet#dsh-pet"
+  - plugin: "zhu1090093659/dsh-web#packages/dsh-git-graph"
+  - plugin: "NanmiCoder/dsh-agent-teams"
+  - plugin: "SeverusZh/dsh-plugin-subagent-director"

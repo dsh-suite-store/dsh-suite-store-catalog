@@ -1,0 +1,25 @@
+# 最简模板：只有必填项。/ Minimal template: required fields only.
+# 复制到 suites/<你的GitHub登录名>/<suite_id>/<version>.yml 后修改。/ Copy to suites/<your-github-login>/<suite_id>/<version>.yml and edit.
+# 文件名必须是 <major>.<minor>.<patch>.yml（如 1.0.0.yml），且与下面的 version 一致。/ The file name must be <major>.<minor>.<patch>.yml (e.g. 1.0.0.yml) and must equal `version` below.
+# 升级时新增 1.0.1.yml，不要删除旧版本的 yml —— 旧版本是变更历史。/ To upgrade, add 1.0.1.yml; do not delete the old file — old versions are the change history.
+# 成员只写 owner/name（在 awesome-dsh-plugin.com 上能找到的仓库），/ For each member specify only owner/name (repos findable on awesome-dsh-plugin.com);
+# 其余信息（npm 包名、版本、描述、权限、星数）构建时自动从索引补全。/ all other info (npm package name, version, description, permissions, stars) is filled from the index at build time.
+id: my-suite
+owner: your-github-login
+version: 1.0.0
+
+# 双语字段：en 必填、zh 可选（不写则退回 en）/ Bilingual fields: en required, zh optional (falls back to en)
+title:
+  zh: 我的整合包
+  en: My suite
+summary:
+  zh: 一句话说明它解决什么场景
+  en: One sentence on the scenario it solves
+
+# 必填：一级分类决定卡片出现在哪个 tab（可选值见 schema/categories.json，共 30 个）/ Required: primary category decides which tab the card appears in (see schema/categories.json for the full list of slugs)
+category:
+  primary: productivity
+
+members:
+  - plugin: owner1/plugin-one
+  - plugin: owner2/plugin-two

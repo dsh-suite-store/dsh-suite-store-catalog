@@ -1,0 +1,18 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-mobile-remote
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '手机远程使用 DSH'
+  en: 'Use DSH From Your Phone'
+summary:
+  zh: '手机适配界面、局域网访问，还能接收语音提醒。'
+  en: 'Mobile UI and LAN access, plus alerts.'
+category:
+  primary: remote-wsl
+  secondary: mobile-remote
+members:
+  - plugin: 'mexiaosqwq/dsh-web-mobile'
+  - plugin: 'Leon0555/dsh-lan-access'
+  - plugin: 'huguangyu666/dsh-plugin-notify'

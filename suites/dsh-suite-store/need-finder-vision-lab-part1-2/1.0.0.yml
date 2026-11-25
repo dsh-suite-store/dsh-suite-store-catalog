@@ -1,0 +1,14 @@
+id: need-finder-vision-lab-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '让纯文本模型看图'
+  en: 'Give Text-Only Models Vision'
+summary:
+  zh: '让纯文本模型也能看懂图片。'
+  en: 'Teach text-only models to see images.'
+category:
+  primary: multimedia
+members:
+  - plugin: 54xkeee/dsh-vision
+  - plugin: s3yf1337/dsh-easyvision

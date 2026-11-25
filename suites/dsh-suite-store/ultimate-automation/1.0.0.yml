@@ -1,0 +1,16 @@
+# 来源：18126295767-cell（deepseek-harness-ultimate） — https://github.com/18126295767-cell/deepseek-harness-ultimate/blob/main/profile/manifest.json
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: ultimate-automation
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '定时与条件自动化'
+  en: 'Scheduled and event automation'
+summary:
+  zh: '定时运行编码任务，并在文件、命令等变化时唤醒代理。'
+  en: 'Schedule jobs and wake agents on events.'
+category:
+  primary: development
+members:
+  - plugin: 'titanwings/dsh-automation'
+  - plugin: 'fuhefei/dsh-sentinel'

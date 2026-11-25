@@ -1,0 +1,18 @@
+id: yukitakasama-codex-workbench-part1-6
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: 'Codex 风格编码工作台'
+  en: 'Codex coding workbench'
+summary:
+  zh: 'Codex 界面、代码审查与简化、成本与上下文面板'
+  en: 'Codex UI, review, simplify, track cost'
+category:
+  primary: code-review
+members:
+  - plugin: MichengAI/dsh-codex-ui
+  - plugin: MichengAI/dsh-code-review
+  - plugin: MichengAI/dsh-simplify
+  - plugin: MichengAI/dsh-btw
+  - plugin: Han-1413141/dsh-cost-meter
+  - plugin: bowenliang123/dsh-context

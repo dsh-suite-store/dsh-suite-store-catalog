@@ -1,0 +1,18 @@
+id: yukitakasama-codex-workbench-part2-7
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: 'Codex 编码精简工作台'
+  en: 'Codex coding essentials'
+summary:
+  zh: '代码审查简化、旁问与成本上下文，更专注写代码'
+  en: 'Review, simplify, cost and context'
+category:
+  primary: code-review
+members:
+  - plugin: MichengAI/dsh-code-review
+  - plugin: MichengAI/dsh-simplify
+  - plugin: MichengAI/dsh-btw
+  - plugin: Han-1413141/dsh-cost-meter
+  - plugin: bowenliang123/dsh-context
+  - plugin: PC2005-cloud/dsh-pet#dsh-pet

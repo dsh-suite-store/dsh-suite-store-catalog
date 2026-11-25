@@ -1,0 +1,20 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-memory-kit
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '跨会话持久记忆'
+  en: 'Cross-Session Memory Kit'
+summary:
+  zh: '用专注板和多种记忆后端，让智能体跨会话记住要点。'
+  en: 'Keep memory and focus across sessions.'
+category:
+  primary: memory
+  secondary: cross-session
+members:
+  - plugin: '863683348/dsh-plugin-focus'
+  - plugin: 'diqierjia/StrataGate-AgentMemory'
+  - plugin: 'highland0971/dsh-native-memory'
+  - plugin: 'KLRSL/dsh-biomemory'
+  - plugin: 'moononnn/DeepSeek-Harness-Hanako-Memory'

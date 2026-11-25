@@ -1,0 +1,20 @@
+# 来源：STARDUSTLC666（dsh-suite） — https://github.com/STARDUSTLC666/dsh-suite
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshsuite-media-studio
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '音视频与演示工坊'
+  en: 'Media Creation Studio'
+summary:
+  zh: '视频剪辑、配音转写、幻灯片与程序化视频创作。'
+  en: 'Video, voice, slides and coded video.'
+category:
+  primary: multimedia
+  secondary: video-edit
+members:
+  - plugin: 'STARDUSTLC666/dsh-ffmpeg'
+  - plugin: 'STARDUSTLC666/dsh-voice'
+  - plugin: 'STARDUSTLC666/dsh-ppt'
+  - plugin: 'STARDUSTLC666/dsh-hyperframes'
+  - plugin: 'STARDUSTLC666/dsh-remotion'

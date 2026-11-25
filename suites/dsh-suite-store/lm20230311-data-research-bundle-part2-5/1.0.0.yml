@@ -1,0 +1,16 @@
+id: lm20230311-data-research-bundle-part2-5
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '科研协作与配置管理'
+  en: 'Research teams and config'
+summary:
+  zh: '费用统计、多智能体数学研究与配置备份迁移。'
+  en: 'Costs, math research and config backup.'
+category:
+  primary: data-science
+members:
+  - plugin: Han-1413141/dsh-cost-meter
+  - plugin: ChongCyrus/Vibe-Mathematics
+  - plugin: NanmiCoder/dsh-agent-teams
+  - plugin: xiajiajun516/dsh-config-manager

@@ -1,0 +1,17 @@
+id: dariandai-memory
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '记忆与技能管家'
+  en: 'Memory & Skills Manager'
+summary:
+  zh: '跨会话持久记忆搭配技能库管理，让助手更懂你。'
+  en: 'Persistent memory and skill management.'
+
+category:
+  primary: memory
+
+members:
+  - plugin: 'omdsh-dev/dsh-mnemon'
+  - plugin: 'YTxue/dsh-skill-manager-ytxue'

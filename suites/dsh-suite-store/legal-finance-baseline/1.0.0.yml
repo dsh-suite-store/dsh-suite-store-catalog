@@ -1,0 +1,19 @@
+# 来源：https://dshmp.com/zh/plugins/commonworks-dsh-starter
+# 证据：@commonworks/dsh-starter README「场景与插件对照」legal-finance 模板场景成员 + 「通用插件，任何场景都推荐」9 个（原文：完整推荐名单=场景成员+通用插件）；逐字名单按索引 npm 精确映射，未收录的 dsh-date-calc 不在内。
+# 真实发布 legal-finance preset 的连续子集（成员逐字，未增删替换）
+id: legal-finance-baseline
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '法务检索底座'
+  en: 'Legal research foundation'
+summary:
+  zh: '免费联网检索，配合上下文压缩与洞察打底。'
+  en: 'Free web search with context insight.'
+category:
+  primary: legal
+  secondary: law-lookup
+members:
+  - plugin: DDDMUC/dsh-free-search
+  - plugin: ranxianglei/billion-context
+  - plugin: bowenliang123/dsh-context

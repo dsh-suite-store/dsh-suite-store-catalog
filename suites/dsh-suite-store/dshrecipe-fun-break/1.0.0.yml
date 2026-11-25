@@ -1,0 +1,19 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-fun-break
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '工作间隙放松一下'
+  en: 'Relax between tasks'
+summary:
+  zh: '桌宠、开发小游戏、表情与摸鱼视频陪你放松。'
+  en: 'Pet, game, emoji and videos for breaks.'
+category:
+  primary: entertainment
+  secondary: desktop-pet
+members:
+  - plugin: 'nzl153/dsh-pet-whale'
+  - plugin: 'lucky8197/dsh-devquest'
+  - plugin: 'hellodigua/dsh-emoji'
+  - plugin: 'Rain-Shuoyu/dsh-client-deep-sneak'

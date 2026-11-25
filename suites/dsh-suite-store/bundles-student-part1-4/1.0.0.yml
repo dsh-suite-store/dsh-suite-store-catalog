@@ -1,0 +1,16 @@
+id: bundles-student-part1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '学习助手入门套装'
+  en: 'Study Starter Kit'
+summary:
+  zh: '记住要点、导入聊天记录并优化提问，学习更顺手。'
+  en: 'Remember, import chats, refine prompts.'
+category:
+  primary: education
+members:
+  - plugin: vectorize-io/hindsight#coding-agents
+  - plugin: omdsh-dev/dsh-mnemon
+  - plugin: Nwflower/dsh-chat-import
+  - plugin: seven282/oss-prompt-optimizer

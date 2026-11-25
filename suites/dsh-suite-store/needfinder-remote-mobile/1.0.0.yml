@@ -1,0 +1,18 @@
+# 来源：863683348（dsh-need-finder） — https://github.com/863683348/dsh-need-finder
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: needfinder-remote-mobile
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '手机远程访问 DSH'
+  en: 'Access DSH from Your Phone'
+summary:
+  zh: '手机或局域网访问 DSH 网页界面，还能看 API 余额。'
+  en: 'Use DSH on phone/LAN; see API balance.'
+category:
+  primary: remote-wsl
+  secondary: mobile-remote
+members:
+  - plugin: 'Leon0555/dsh-lan-access'
+  - plugin: 'mexiaosqwq/dsh-web-mobile'
+  - plugin: '02Muller25/dsh-api-balance'

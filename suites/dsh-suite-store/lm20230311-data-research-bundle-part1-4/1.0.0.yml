@@ -1,0 +1,16 @@
+id: lm20230311-data-research-bundle-part1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '数据科研协作套装'
+  en: 'Data research collaboration set'
+summary:
+  zh: '上下文与费用洞察，配多智能体数学研究。'
+  en: 'Context, costs and math research teams.'
+category:
+  primary: data-science
+members:
+  - plugin: bowenliang123/dsh-context
+  - plugin: Han-1413141/dsh-cost-meter
+  - plugin: ChongCyrus/Vibe-Mathematics
+  - plugin: NanmiCoder/dsh-agent-teams

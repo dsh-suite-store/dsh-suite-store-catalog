@@ -1,0 +1,17 @@
+id: dpharness-session-manage
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '会话管理与安全回退'
+  en: 'Session Management & Safe Rollback'
+summary:
+  zh: '快照回退、导入历史会话，会话地图与归档全都有。'
+  en: 'Undo, rewind, import, map & archive.'
+category:
+  primary: context-session
+members:
+  - plugin: lire1131/dsh-undo-savepoint
+  - plugin: liangmianya/dsh-synapse
+  - plugin: Anionex/dsh-turn-rewind
+  - plugin: Nwflower/dsh-chat-import
+  - plugin: MichengAI/dsh-archive-manager

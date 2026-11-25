@@ -1,0 +1,20 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：LM20230311 (dsh-bundles) — https://github.com/LM20230311/dsh-bundles
+# 证据：dsh-bundles data/bundles.json 的 Student/Learner 套装，原文 tagline「记忆、笔记、学习辅助，越用越懂你」，五个成员逐字映射为 vectorize-io/hindsight#coding-agents、omdsh-dev/dsh-mnemon、Nwflower/dsh-chat-import、seven282/oss-prompt-optimizer、SiriLee/dsh-rewind，全部索引 OK。
+id: bundles-student
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '贴心的学习伙伴'
+  en: 'Study Companion Pack'
+summary:
+  zh: '记忆笔记与学习辅助齐全，陪伴你越学越顺。'
+  en: 'Memory and study aids in one pack.'
+category:
+  primary: education
+members:
+  - plugin: "vectorize-io/hindsight#coding-agents"
+  - plugin: "omdsh-dev/dsh-mnemon"
+  - plugin: "Nwflower/dsh-chat-import"
+  - plugin: "seven282/oss-prompt-optimizer"
+  - plugin: "SiriLee/dsh-rewind"

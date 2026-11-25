@@ -1,0 +1,18 @@
+# 来源：863683348（dsh-need-finder） — https://github.com/863683348/dsh-need-finder
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: needfinder-dev-tools
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '编码调试助手'
+  en: 'Coding & Debug Helpers'
+summary:
+  zh: '标注页面元素、检查内置能力、设定推理档位。'
+  en: 'Tag UI, check built-ins, set reasoning.'
+category:
+  primary: development
+  secondary: code-navigation
+members:
+  - plugin: 'BrambleXu/dsh-annotate'
+  - plugin: 'Starfie1d1272/dsh-builtin-toggles'
+  - plugin: 'qjcnmd/dsh-reasoning-slider'

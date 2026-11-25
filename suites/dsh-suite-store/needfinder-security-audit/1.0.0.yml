@@ -1,0 +1,18 @@
+# 来源：863683348（dsh-need-finder） — https://github.com/863683348/dsh-need-finder
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: needfinder-security-audit
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '插件安全防护套装'
+  en: 'Plugin Safety & Audit Kit'
+summary:
+  zh: '装前体检插件、把好调用关，并给遥测数据脱敏。'
+  en: 'Vet plugins, gate calls, mask telemetry.'
+category:
+  primary: security-audit
+  secondary: local-scan
+members:
+  - plugin: 'BotonJ/dsh-plugin-sentinel'
+  - plugin: 'truelove-dreamer/dsh-plugin-vetting'
+  - plugin: '030611/dsh-telemetry-redactor'

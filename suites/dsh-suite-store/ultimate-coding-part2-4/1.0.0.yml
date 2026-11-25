@@ -1,0 +1,15 @@
+id: ultimate-coding-part2-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '小队派工与经验规划'
+  en: 'Squads and experience planning'
+summary:
+  zh: '多模型小队并行派工，按依赖分波并借鉴历史方案规划。'
+  en: 'Agent squads in waves, smart planning.'
+category:
+  primary: agent-teams
+members:
+  - plugin: toolclub/dsh-agent-team-gui
+  - plugin: february2015/dsh-taskswarm
+  - plugin: ztl34245881-commits/dsh-task-planner

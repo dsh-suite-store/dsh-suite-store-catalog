@@ -1,0 +1,72 @@
+# 最全模板：包含所有可选字段。/ Full template: includes every optional field.
+# 必填：id、owner、version、title、summary、category、members。其余（description、tags、cover、icon、postInstall、capabilityRedLines、members[].reason、members[].requires）可省略。/ Required: id, owner, version, title, summary, category and members. Everything else (description, tags, cover, icon, postInstall, capabilityRedLines, members[].reason, members[].requires) may be omitted.
+id: my-suite
+owner: your-github-login
+version: 1.0.0
+
+# 标题与摘要：双语，en 必填、zh 可选（不写则退回 en）；摘要每种语言 ≤40 字 / Title and summary: bilingual; en required, zh optional (falls back to en); summary ≤40 characters per language
+title:
+  zh: 我的整合包
+  en: My suite
+summary:
+  zh: 一句话说明它解决什么场景
+  en: One sentence on the scenario it solves
+
+# 可选：详情页正文，比 summary 长；en 必填、zh 可选 / Optional: detail-page body text, longer than summary; en required, zh optional
+description:
+  zh: 这里写完整介绍：这套整合包覆盖什么流程、成员之间怎么配合、装完能做什么。
+  en: "The full introduction — what workflow this suite covers, how the members fit together, and what the user can do once installed."
+
+# 必填：一级分类决定卡片在哪个 tab（可选值见 schema/categories.json）。secondary 可选（tab 内的 chip，必须是所选一级下的 slug）/ Required: primary category decides which tab the card appears in (see schema/categories.json); secondary is optional (a chip within the tab, and must be one of that primary's slugs)
+category:
+  primary: productivity
+  secondary: automation
+
+# 可选：标签，最多 8 个，小写字母/数字/连字符 / Optional: tags, at most 8, lowercase letters/digits/hyphens
+tags:
+  - automation
+  - productivity
+
+# 可选：封面图（宽图）。必须是 GitHub 托管的位图（png/jpg/jpeg/webp），
+# 第三方图床与 SVG 会被拒绝 / Optional: wide cover image. Must be a GitHub-hosted
+# bitmap (png/jpg/jpeg/webp); third-party image hosts and SVG are refused.
+cover: https://raw.githubusercontent.com/owner/repo/main/assets/cover.png
+
+# 可选——用 GitHub 托管的位图作为市场卡片图标；不写则回退到作者头像
+# （GitHub 登录名对应的头像）。投稿人是 dsh-suite-store 时用插件内置的默认图标。
+# Optional — a GitHub-hosted bitmap used as the market card icon. Leave it out and
+# the author's avatar (from the GitHub login) is used instead. When the owner is
+# dsh-suite-store, the plugin's built-in default icon is used.
+icon: https://raw.githubusercontent.com/owner/repo/main/assets/icon-180.png
+
+# 可选：装完后要告诉用户的一句话；en 必填、zh 可选 / Optional: a message shown to the user after installation; en required, zh optional
+postInstall:
+  zh: 首次使用请在设置页填入 API key。
+  en: Add your API key in the settings page on first use.
+
+# 可选：需要警示的风险，可点名成员；text 为双语，en 必填、zh 可选 / Optional: risks to warn about; specific members may be named; text is bilingual; en required, zh optional
+capabilityRedLines:
+  - text:
+      zh: 该成员会读取凭据并访问网络
+      en: This member reads credentials and has network access
+    members:
+      - owner1/plugin-one
+
+# 必填：2–10 个成员，每个只需 owner/name / Required: 2–10 members; each only needs owner/name
+members:
+  # 最简形式：只写 plugin / Minimal form: specify only plugin
+  - plugin: owner1/plugin-one
+
+  # 带理由（可选，但推荐：读者会知道为什么它在）；en 必填、zh 可选 / With a reason (optional but recommended: readers know why it is here); en required, zh optional
+  - plugin: owner2/plugin-two
+    reason:
+      zh: 提供流程第二步所需的解析能力
+      en: Provides the parsing step the flow needs
+
+  # 带依赖关系（可选）：requires 引用其他成员的 owner/name / With dependencies (optional): requires references another member's owner/name
+  - plugin: owner3/plugin-three
+    reason:
+      zh: 汇总前两步的结果并导出
+      en: Aggregates the first two steps and exports
+    requires:
+      - owner1/plugin-one

@@ -1,0 +1,20 @@
+# 来源：STARDUSTLC666（dsh-suite） — https://github.com/STARDUSTLC666/dsh-suite
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshsuite-devops
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '开发与运维工具箱'
+  en: 'DevOps Toolkit'
+summary:
+  zh: '容器、数据库、测试、代码安全与 Codex 移植。'
+  en: 'Docker, SQL, tests, code audit, Codex.'
+category:
+  primary: development
+  secondary: dev-server
+members:
+  - plugin: 'STARDUSTLC666/dsh-docker'
+  - plugin: 'STARDUSTLC666/dsh-sql'
+  - plugin: 'STARDUSTLC666/dsh-flakefinder'
+  - plugin: 'STARDUSTLC666/dsh-code-security'
+  - plugin: 'STARDUSTLC666/dsh-codex-port'

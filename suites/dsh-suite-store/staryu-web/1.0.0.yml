@@ -1,0 +1,15 @@
+id: staryu-web
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '联网搜索与浏览器'
+  en: 'Web search and browser'
+summary:
+  zh: '联网搜索、驱动真实浏览器，并让模型看懂图片。'
+  en: 'Web search, browser control and images.'
+category:
+  primary: web-search
+members:
+  - plugin: liustack/modsearch
+  - plugin: Fisfzy/dsh-ego-browser
+  - plugin: liustack/modlens

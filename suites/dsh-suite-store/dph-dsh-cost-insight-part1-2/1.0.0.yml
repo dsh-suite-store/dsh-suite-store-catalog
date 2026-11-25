@@ -1,0 +1,14 @@
+id: dph-dsh-cost-insight-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '用量成本洞察'
+  en: 'Usage & Cost Insight'
+summary:
+  zh: '查看会话费用、余额与多供应商用量，花钱心中有数。'
+  en: 'Track costs, balances and usage.'
+category:
+  primary: usage-billing
+members:
+  - plugin: Han-1413141/dsh-cost-meter
+  - plugin: Ychris12138/dsh-usage-stats

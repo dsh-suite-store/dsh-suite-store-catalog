@@ -1,0 +1,20 @@
+# 来源：dshbase — https://dshbase.com/blog/dsh-sandbox/
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshbase-guide-security-stack
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '安全审计一条龙'
+  en: 'One-Pass Security Stack'
+summary:
+  zh: '审批工具调用，并本机审计插件与上下文风险'
+  en: 'Approve tools, audit plugins and context'
+category:
+  primary: security-audit
+  secondary: local-scan
+members:
+  - plugin: 'ilharp/dsh-tool-approval'
+  - plugin: 'omdsh-dev/dsh-custom-tool'
+  - plugin: 'omdsh-dev/dsh-security-audit'
+  - plugin: 'omdsh-dev/dsh-plugin-check'
+  - plugin: 'Zhenyu98/dsh-context-doctor'

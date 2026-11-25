@@ -1,0 +1,18 @@
+id: dshbase-vision
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '文本模型看图套件'
+  en: 'Vision Kit for Text Models'
+summary:
+  zh: '贴图即可 OCR、看图问答，并把视觉任务路由给模型'
+  en: 'Paste images: OCR, Q&A, vision routing'
+
+category:
+  primary: vision
+
+members:
+  - plugin: 'liustack/modlens'
+  - plugin: 'Anionex/dsh-vision-toolkit'
+  - plugin: 'ysr666/dsh-vision-router'

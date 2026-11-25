@@ -1,0 +1,14 @@
+id: dshrecipe-browser-dev-env-part3-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '免密钥搜索两件套'
+  en: 'Keyless search pair'
+summary:
+  zh: '免费多引擎搜索与免密钥内置搜索组合。'
+  en: 'Free engines and keyless search.'
+category:
+  primary: technical-writing
+members:
+  - plugin: DDDMUC/dsh-free-search
+  - plugin: shinjiyu/dsh-plugin-search

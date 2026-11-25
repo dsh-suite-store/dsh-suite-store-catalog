@@ -1,0 +1,19 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：staryu5463 (dsh-starter-packs) — https://raw.githubusercontent.com/staryu5463/dsh-starter-packs/main/packs/coder.json
+# 证据：同一 publisher 的 coder.json「编程开发」包，原文明确「写代码时常用的一组：子代理代码审查、MCP 连接管理、仓库架构图，外加可选的危险命令护栏」；其中 archify-dsh（@tt-a1i/archify-dsh）是仓库架构/时序/数据流图生成器，索引中 owner/name 为 tt-a1i/archify#integrations/deepseek-harness。此处按「架构可视化」场景收录（同一原文包在 code-review 分类下亦有收录）。
+id: staryu-coding-architecture-pack
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '代码审查与架构图'
+  en: 'Code review and diagrams'
+summary:
+  zh: '子代理审查代码改动，并生成仓库架构与流程时序图。'
+  en: 'Subagent code review and repo diagrams.'
+category:
+  primary: architecture
+members:
+  - plugin: "MichengAI/dsh-code-review"
+  - plugin: "duhu2000/dsh-mcp-connector"
+  - plugin: "tt-a1i/archify#integrations/deepseek-harness"
+  - plugin: "kenryu42/cc-safety-net"

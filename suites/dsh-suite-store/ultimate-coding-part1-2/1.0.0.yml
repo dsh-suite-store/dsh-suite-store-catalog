@@ -1,0 +1,14 @@
+id: ultimate-coding-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '计划批注与代理小队'
+  en: 'Plan review and agent squads'
+summary:
+  zh: '逐条批注计划并把反馈送回代理，配合多模型小队协作。'
+  en: 'Annotate plans, dispatch agent squads.'
+category:
+  primary: agent-teams
+members:
+  - plugin: titanwings/dsh-plannotator
+  - plugin: toolclub/dsh-agent-team-gui

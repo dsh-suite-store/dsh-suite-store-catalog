@@ -1,0 +1,18 @@
+# 来源：DSH Hub — https://dsh-hub.cc/packs?lang=zh
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshhub-appearance
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '界面风格统一包'
+  en: 'Unified Interface Styling'
+summary:
+  zh: '统一主题配色、侧边栏与界面细节，凑齐完整工作区'
+  en: 'Unify themes, sidebar, and UI details'
+category:
+  primary: ui-beautify
+  secondary: themes
+members:
+  - plugin: 'kingOfSoySauce/dsh-liang-skin'
+  - plugin: 'omdsh-dev/DSH-better-sidebar'
+  - plugin: 'Physicolor/dsh-ui-harmonizer'

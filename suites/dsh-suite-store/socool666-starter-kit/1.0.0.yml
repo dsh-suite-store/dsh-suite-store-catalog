@@ -1,0 +1,18 @@
+# 来源：SOCOOL666（仓库描述自称「DSH 一键整合包」） — https://raw.githubusercontent.com/SOCOOL666/dsh-starter-kit/main/README.zh-CN.md
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: socool666-starter-kit
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '新手一键上手套件'
+  en: 'Starter kit for newcomers'
+summary:
+  zh: '装好插件市场、增强侧边栏和全局提示词，开箱即用。'
+  en: 'Plugin market, sidebar and prompts.'
+category:
+  primary: getting-started
+  secondary: starter-kit
+members:
+  - plugin: 'dsh-market/dsh-market'
+  - plugin: 'omdsh-dev/DSH-better-sidebar'
+  - plugin: 'sryimnoob123/dsh-global-prompt'

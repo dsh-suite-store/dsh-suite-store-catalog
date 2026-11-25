@@ -1,0 +1,19 @@
+# 来源：PerryLink（dsh-plugins） — https://github.com/PerryLink/dsh-plugins
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: perrylink-finance-ops
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '财务对账运营套装'
+  en: 'Finance Reconciliation Pack'
+summary:
+  zh: '核对电子发票、银行流水、三单匹配与差旅费用。'
+  en: 'Invoices, bank, 3-way and travel checks.'
+category:
+  primary: finance-ops
+  secondary: ledger
+members:
+  - plugin: 'PerryLink/dsh-einvoice'
+  - plugin: 'PerryLink/dsh-bankrec'
+  - plugin: 'PerryLink/dsh-ap-three-way'
+  - plugin: 'PerryLink/dsh-travel-recon'

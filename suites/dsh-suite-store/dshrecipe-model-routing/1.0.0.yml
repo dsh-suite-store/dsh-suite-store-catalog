@@ -1,0 +1,20 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-model-routing
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '多模型路由与接入套装'
+  en: 'Model Routing & Access Kit'
+summary:
+  zh: '分级调度强弱模型，接入多来源并自选子代理模型。'
+  en: 'Model routing, sources, subagent picks.'
+category:
+  primary: model-access
+  secondary: model-switch
+members:
+  - plugin: 'BruceLanLan/dsh-tier-router'
+  - plugin: 'wenzetan/dsh-llm-newapi'
+  - plugin: 'ringoage/dsh-subagent-model-picker'
+  - plugin: 'kam74515-boop/dsh-everything-oauth'
+  - plugin: 'NOirBRight/dsh-llm-ollama'

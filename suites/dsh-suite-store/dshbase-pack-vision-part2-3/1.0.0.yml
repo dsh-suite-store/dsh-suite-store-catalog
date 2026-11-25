@@ -1,0 +1,14 @@
+id: dshbase-pack-vision-part2-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '免密钥看图工具组'
+  en: 'Keyless Vision Tools'
+summary:
+  zh: '免密钥看图：问答、OCR 与像素对比'
+  en: 'Keyless image Q&A, OCR and pixel diff'
+category:
+  primary: vision
+members:
+  - plugin: Anionex/dsh-vision-toolkit
+  - plugin: ysr666/dsh-vision-router

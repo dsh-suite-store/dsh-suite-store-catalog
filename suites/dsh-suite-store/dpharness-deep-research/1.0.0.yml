@@ -1,0 +1,17 @@
+id: dpharness-deep-research
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '深度研究与可核验报告'
+  en: 'Deep Research & Verifiable Reports'
+summary:
+  zh: '引用多平台历史对话，生成可溯源核验的行业研报。'
+  en: 'Reference past chats; verify reports.'
+category:
+  primary: academic-research
+members:
+  - plugin: Chael-Chael/dsh-reference-anything
+  - plugin: dsh-market/dsh-market
+  - plugin: PerryLink/dsh-industry-research
+  - plugin: PerryLink/dsh-research-report
+  - plugin: Ikalus1988/MisakaNet

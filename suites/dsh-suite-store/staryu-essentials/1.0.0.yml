@@ -1,0 +1,20 @@
+id: staryu-essentials
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '上下文管理必备'
+  en: 'Context and session essentials'
+summary:
+  zh: '管理上下文、技能、归档，并支持对话回退与旁问。'
+  en: 'Manage context, skills and rewind.'
+
+category:
+  primary: getting-started
+
+members:
+  - plugin: 'bowenliang123/dsh-context'
+  - plugin: 'MichengAI/dsh-skills-manager'
+  - plugin: 'MichengAI/dsh-archive-manager'
+  - plugin: 'SiriLee/dsh-rewind'
+  - plugin: 'MichengAI/dsh-btw'

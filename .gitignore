@@ -1,0 +1,29 @@
+node_modules/
+dist/
+# The publish job's assembled package root (see validate.yml). Built fresh on
+# every release; a local run of the same steps would otherwise leave it staged.
+pkgroot/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Seed-collection output (SOURCING.md): candidate bundles, research notes
+# and cached upstream indexes. These are reviewed before anything is promoted
+# into suites/ or committed.
+collected/
+research/
+plugins.json
+plugins-backup.json
+suites.bak/
+bundles.bak/
+
+# The ~15 MB upstream index CI downloads (see .github/workflows/validate.yml).
+.cache/
+
+# Local secrets and per-machine settings.
+.env
+.env.*
+!.env.example

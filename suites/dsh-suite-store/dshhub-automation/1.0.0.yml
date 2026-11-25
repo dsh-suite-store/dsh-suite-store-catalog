@@ -1,0 +1,17 @@
+# 来源：DSH Hub — https://dsh-hub.cc/packs?lang=zh
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshhub-automation
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '任务编排与定时提醒'
+  en: 'Orchestrate, Schedule, Get Notified'
+summary:
+  zh: '编排工作流、定时跑任务，完成或待处理时收到提醒'
+  en: 'Orchestrate, schedule, and get notified'
+category:
+  primary: development
+members:
+  - plugin: 'omdsh-dev/dsh_workflow'
+  - plugin: 'titanwings/dsh-automation'
+  - plugin: 'omdsh-dev/dsh-notification'

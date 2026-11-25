@@ -1,0 +1,20 @@
+id: dshmarket-essentials
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '日常必备全套工具'
+  en: 'Complete everyday essentials'
+summary:
+  zh: '上下文、记忆、搜索、回退与用量统计全齐。'
+  en: 'Context, memory, search, rewind, usage.'
+
+category:
+  primary: getting-started
+
+members:
+  - plugin: 'bowenliang123/dsh-context'
+  - plugin: 'omdsh-dev/dsh-mnemon'
+  - plugin: 'liustack/modsearch'
+  - plugin: 'Anionex/dsh-turn-rewind'
+  - plugin: 'zh667/TokenLedger'

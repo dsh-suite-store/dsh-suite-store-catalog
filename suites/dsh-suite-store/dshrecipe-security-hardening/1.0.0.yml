@@ -1,0 +1,19 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-security-hardening
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '安全加固与用量守护'
+  en: 'Security Hardening & Usage Guard'
+summary:
+  zh: '收紧权限、脱敏遥测，并审计内置能力与用量。'
+  en: 'Permissions, redaction and usage audits.'
+category:
+  primary: security-audit
+  secondary: permission-gate
+members:
+  - plugin: '940842546/dsh-permissions'
+  - plugin: '030611/dsh-telemetry-redactor'
+  - plugin: 'Starfie1d1272/dsh-builtin-toggles'
+  - plugin: 'LeemanCheung/dsh-token-usage'

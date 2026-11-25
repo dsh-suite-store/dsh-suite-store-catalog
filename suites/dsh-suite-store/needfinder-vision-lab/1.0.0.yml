@@ -1,0 +1,18 @@
+# 来源：863683348（dsh-need-finder） — https://github.com/863683348/dsh-need-finder
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: needfinder-vision-lab
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '看图生图工作台'
+  en: 'Vision & Image Generation Lab'
+summary:
+  zh: '让模型看懂图片，还能用 AI 生成新图。'
+  en: 'See images, generate new ones with AI.'
+category:
+  primary: vision
+  secondary: image-qa
+members:
+  - plugin: '54xkeee/dsh-vision'
+  - plugin: 's3yf1337/dsh-easyvision'
+  - plugin: 'dickpy/dsh-imagegen'

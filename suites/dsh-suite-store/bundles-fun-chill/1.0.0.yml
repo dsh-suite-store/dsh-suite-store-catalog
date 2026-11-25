@@ -1,0 +1,19 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：LM20230311 (dsh-bundles) — https://raw.githubusercontent.com/LM20230311/dsh-bundles/main/data/bundles.json
+# 证据：bundles.json 该 bundle 原文 tagline「壁纸、桌宠、挂件，快乐摸鱼」。逐字成员：beauticode-dsh、dsh-pet、dsh-whale-widget、dsh-plugin-wallpaper-engine（按 npm 名解析为索引 owner/name，部分为 monorepo 子路径）。4/4 全部索引 OK。
+id: bundles-fun-chill
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '摸鱼休闲角落'
+  en: 'Fun & Chill Corner'
+summary:
+  zh: '壁纸、桌面宠物与小挂件，让等待也轻松有趣。'
+  en: 'Wallpapers, pets and widgets for fun.'
+category:
+  primary: entertainment
+members:
+  - plugin: "starsstreaming/beautiCode#deepseek-harness"
+  - plugin: "PC2005-cloud/dsh-pet#dsh-pet"
+  - plugin: "MeteorNOX/DeepSeek-Balance-Whale-Widget"
+  - plugin: "elysia395/dsh-wallpaper-engine"

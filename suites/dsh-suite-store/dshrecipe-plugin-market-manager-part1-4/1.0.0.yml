@@ -1,0 +1,16 @@
+id: dshrecipe-plugin-market-manager-part1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '插件商店与启停管理'
+  en: 'Plugin Stores & Toggle'
+summary:
+  zh: '逛插件商店、一键安装，并在设置里启停插件。'
+  en: 'Browse stores, install and toggle.'
+category:
+  primary: plugin-management
+members:
+  - plugin: 1e0zj/dsh-plugin-mall
+  - plugin: huguangyu666/dsh-store
+  - plugin: loguhan/dsh-workshop
+  - plugin: tuogusa/dsh-plugin-toggle

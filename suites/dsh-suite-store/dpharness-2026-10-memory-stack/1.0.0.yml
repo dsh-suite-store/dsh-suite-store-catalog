@@ -1,0 +1,19 @@
+# 来源：DPharness / DeepSeek Harness Hub — https://dpharness.com/sets/dsh-memory-stack?period=2026-10
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dpharness-2026-10-memory-stack
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '长期记忆与上下文（2026-10）'
+  en: 'Memory & Context Stack (2026-10)'
+summary:
+  zh: '跨会话记住项目背景，图谱化记忆并查看上下文。'
+  en: 'Remember across sessions, view context.'
+category:
+  primary: memory
+  secondary: cross-session
+members:
+  - plugin: 'omdsh-dev/dsh-mnemon'
+  - plugin: 'adoresever/graph-memory'
+  - plugin: 'PerryLink/dsh-memento'
+  - plugin: 'bowenliang123/dsh-context'

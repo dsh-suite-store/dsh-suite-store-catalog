@@ -1,0 +1,16 @@
+id: dshmarket-essentials-p1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '日常对话必备四件套'
+  en: 'Everyday chat essentials'
+summary:
+  zh: '管理上下文、持久记忆、联网搜索与对话回退。'
+  en: 'Context, memory, web search and rewind.'
+category:
+  primary: productivity
+members:
+  - plugin: bowenliang123/dsh-context
+  - plugin: omdsh-dev/dsh-mnemon
+  - plugin: liustack/modsearch
+  - plugin: Anionex/dsh-turn-rewind

@@ -1,0 +1,1626 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "note": "Single source of truth for bundle categories. This file is the ONLY input: the validator and builder read it (readCategories), and the category enums in schema/bundle.schema.json are generated from it by scripts/sync-schema.mjs (CI runs --check). Nothing here may come from a prose document. readCategories() enforces slug and label uniqueness; edit here to add a category or fix an English name.",
+  "categories": [
+    {
+      "slug": "getting-started",
+      "zh": "新手入门",
+      "en": "Getting Started",
+      "secondary": [
+        {
+          "slug": "daily-driver",
+          "zh": "日常主力",
+          "en": "Daily Driver"
+        },
+        {
+          "slug": "zero-config",
+          "zh": "零配置",
+          "en": "Zero Config"
+        },
+        {
+          "slug": "beginner-friendly",
+          "zh": "小白友好",
+          "en": "Beginner Friendly"
+        },
+        {
+          "slug": "starter-kit",
+          "zh": "起步套件",
+          "en": "Starter Kit"
+        }
+      ]
+    },
+    {
+      "slug": "productivity",
+      "zh": "效率工具",
+      "en": "Productivity",
+      "secondary": [
+        {
+          "slug": "task-board",
+          "zh": "任务看板",
+          "en": "Task Board"
+        },
+        {
+          "slug": "quick-capture",
+          "zh": "快速记录",
+          "en": "Quick Capture"
+        },
+        {
+          "slug": "side-question",
+          "zh": "旁问",
+          "en": "Side Question"
+        },
+        {
+          "slug": "notifications",
+          "zh": "通知提醒",
+          "en": "Notifications"
+        },
+        {
+          "slug": "spend-wallet",
+          "zh": "花费钱包",
+          "en": "Spend Wallet"
+        },
+        {
+          "slug": "focus-timer",
+          "zh": "专注计时",
+          "en": "Focus Timer"
+        },
+        {
+          "slug": "shortcuts",
+          "zh": "快捷操作",
+          "en": "Shortcuts"
+        },
+        {
+          "slug": "templates",
+          "zh": "模板库",
+          "en": "Templates"
+        },
+        {
+          "slug": "automation",
+          "zh": "自动化",
+          "en": "Automation"
+        },
+        {
+          "slug": "multi-task",
+          "zh": "多任务",
+          "en": "Multi Task"
+        }
+      ]
+    },
+    {
+      "slug": "ui-beautify",
+      "zh": "界面美化",
+      "en": "UI Beautify",
+      "secondary": [
+        {
+          "slug": "themes",
+          "zh": "主题换肤",
+          "en": "Themes"
+        },
+        {
+          "slug": "sidebar",
+          "zh": "侧栏增强",
+          "en": "Sidebar"
+        },
+        {
+          "slug": "wallpaper",
+          "zh": "动态壁纸",
+          "en": "Wallpaper"
+        },
+        {
+          "slug": "status-bar",
+          "zh": "状态栏",
+          "en": "Status Bar"
+        },
+        {
+          "slug": "animations",
+          "zh": "动画效果",
+          "en": "Animations"
+        },
+        {
+          "slug": "glassmorphism",
+          "zh": "玻璃质感",
+          "en": "Glassmorphism"
+        },
+        {
+          "slug": "layout",
+          "zh": "布局调整",
+          "en": "Layout"
+        },
+        {
+          "slug": "typography",
+          "zh": "界面字体",
+          "en": "Typography"
+        },
+        {
+          "slug": "icons",
+          "zh": "图标美化",
+          "en": "Icons"
+        }
+      ]
+    },
+    {
+      "slug": "plugin-management",
+      "zh": "插件管理",
+      "en": "Plugin Management",
+      "secondary": [
+        {
+          "slug": "marketplace",
+          "zh": "插件市场",
+          "en": "Marketplace"
+        },
+        {
+          "slug": "discovery",
+          "zh": "发现检索",
+          "en": "Discovery"
+        },
+        {
+          "slug": "installer",
+          "zh": "安装器",
+          "en": "Installer"
+        },
+        {
+          "slug": "updater",
+          "zh": "更新管理",
+          "en": "Updater"
+        },
+        {
+          "slug": "enable-disable",
+          "zh": "启停切换",
+          "en": "Enable Disable"
+        },
+        {
+          "slug": "dependency",
+          "zh": "依赖管理",
+          "en": "Dependency"
+        },
+        {
+          "slug": "backup-restore",
+          "zh": "备份还原",
+          "en": "Backup Restore"
+        },
+        {
+          "slug": "catalog",
+          "zh": "目录索引",
+          "en": "Catalog"
+        },
+        {
+          "slug": "health-check",
+          "zh": "健康检查",
+          "en": "Health Check"
+        },
+        {
+          "slug": "permissions",
+          "zh": "权限管理",
+          "en": "Permissions"
+        }
+      ]
+    },
+    {
+      "slug": "literary-writing",
+      "zh": "文学创作",
+      "en": "Literary Writing",
+      "secondary": [
+        {
+          "slug": "long-form",
+          "zh": "长文写作",
+          "en": "Long Form"
+        },
+        {
+          "slug": "novel",
+          "zh": "小说创作",
+          "en": "Novel"
+        },
+        {
+          "slug": "essay",
+          "zh": "散文随笔",
+          "en": "Essay"
+        },
+        {
+          "slug": "anti-ai-tone",
+          "zh": "去 AI 腔",
+          "en": "Anti AI Tone"
+        },
+        {
+          "slug": "proofreading",
+          "zh": "校对润色",
+          "en": "Proofreading"
+        },
+        {
+          "slug": "markdown-preview",
+          "zh": "预览",
+          "en": "Markdown Preview"
+        },
+        {
+          "slug": "typesetting",
+          "zh": "文档排版",
+          "en": "Typesetting"
+        },
+        {
+          "slug": "outline",
+          "zh": "大纲",
+          "en": "Outline"
+        },
+        {
+          "slug": "worldbuilding",
+          "zh": "世界设定",
+          "en": "Worldbuilding"
+        },
+        {
+          "slug": "export-publish",
+          "zh": "导出发布",
+          "en": "Export Publish"
+        }
+      ]
+    },
+    {
+      "slug": "technical-writing",
+      "zh": "技术写作与文档",
+      "en": "Technical Writing",
+      "secondary": [
+        {
+          "slug": "api-docs",
+          "zh": "API 文档",
+          "en": "API Docs"
+        },
+        {
+          "slug": "readme",
+          "zh": "README 生成",
+          "en": "Readme"
+        },
+        {
+          "slug": "diagrams",
+          "zh": "图表绘制",
+          "en": "Diagrams"
+        },
+        {
+          "slug": "code-blocks",
+          "zh": "代码块",
+          "en": "Code Blocks"
+        },
+        {
+          "slug": "docx-export",
+          "zh": "DOCX 导出",
+          "en": "DOCX Export"
+        },
+        {
+          "slug": "pdf-render",
+          "zh": "PDF 渲染",
+          "en": "PDF Render"
+        },
+        {
+          "slug": "changelog",
+          "zh": "更新日志",
+          "en": "Changelog"
+        },
+        {
+          "slug": "knowledge-base",
+          "zh": "知识库",
+          "en": "Knowledge Base"
+        },
+        {
+          "slug": "collaborative-doc",
+          "zh": "协作文档",
+          "en": "Collaborative Doc"
+        },
+        {
+          "slug": "versioned-docs",
+          "zh": "版本化文档",
+          "en": "Versioned Docs"
+        }
+      ]
+    },
+    {
+      "slug": "design-creative",
+      "zh": "设计创意",
+      "en": "Design Creative",
+      "secondary": [
+        {
+          "slug": "vision-bridge",
+          "zh": "视觉桥",
+          "en": "Vision Bridge"
+        },
+        {
+          "slug": "image-gen",
+          "zh": "图像生成",
+          "en": "Image Gen"
+        },
+        {
+          "slug": "design-preview",
+          "zh": "设计预览",
+          "en": "Design Preview"
+        },
+        {
+          "slug": "ui-gen",
+          "zh": "UI 生成",
+          "en": "UI Gen"
+        },
+        {
+          "slug": "ocr-layout",
+          "zh": "OCR 版面",
+          "en": "OCR Layout"
+        },
+        {
+          "slug": "color-palette",
+          "zh": "配色",
+          "en": "Color Palette"
+        },
+        {
+          "slug": "typography-design",
+          "zh": "字体设计",
+          "en": "Typography Design"
+        },
+        {
+          "slug": "asset-library",
+          "zh": "素材库",
+          "en": "Asset Library"
+        },
+        {
+          "slug": "vector-graphics",
+          "zh": "矢量图形",
+          "en": "Vector Graphics"
+        }
+      ]
+    },
+    {
+      "slug": "multimedia",
+      "zh": "多媒体制作",
+      "en": "Multimedia",
+      "secondary": [
+        {
+          "slug": "storyboard",
+          "zh": "分镜",
+          "en": "Storyboard"
+        },
+        {
+          "slug": "video-edit",
+          "zh": "视频剪辑",
+          "en": "Video Edit"
+        },
+        {
+          "slug": "pptx",
+          "zh": "PPT 制作",
+          "en": "PPTX"
+        },
+        {
+          "slug": "3d-assets",
+          "zh": "3D 资产",
+          "en": "3d Assets"
+        },
+        {
+          "slug": "subtitles",
+          "zh": "字幕",
+          "en": "Subtitles"
+        },
+        {
+          "slug": "screen-record",
+          "zh": "录屏",
+          "en": "Screen Record"
+        },
+        {
+          "slug": "image-animation",
+          "zh": "图片动效",
+          "en": "Image Animation"
+        },
+        {
+          "slug": "final-render",
+          "zh": "成片渲染",
+          "en": "Final Render"
+        }
+      ]
+    },
+    {
+      "slug": "development",
+      "zh": "编程开发",
+      "en": "Development",
+      "secondary": [
+        {
+          "slug": "terminal-tui",
+          "zh": "终端 TUI",
+          "en": "Terminal Tui"
+        },
+        {
+          "slug": "lsp",
+          "zh": "LSP 动作",
+          "en": "LSP"
+        },
+        {
+          "slug": "git-integration",
+          "zh": "Git 集成",
+          "en": "GIT Integration"
+        },
+        {
+          "slug": "file-mentions",
+          "zh": "@file 引用",
+          "en": "File Mentions"
+        },
+        {
+          "slug": "code-navigation",
+          "zh": "代码导航",
+          "en": "Code Navigation"
+        },
+        {
+          "slug": "debugging",
+          "zh": "调试",
+          "en": "Debugging"
+        },
+        {
+          "slug": "snippets",
+          "zh": "代码片段",
+          "en": "Snippets"
+        },
+        {
+          "slug": "workspace",
+          "zh": "工作区",
+          "en": "Workspace"
+        },
+        {
+          "slug": "refactoring",
+          "zh": "重构",
+          "en": "Refactoring"
+        },
+        {
+          "slug": "dev-server",
+          "zh": "开发服务器",
+          "en": "Dev Server"
+        }
+      ]
+    },
+    {
+      "slug": "code-review",
+      "zh": "代码审查",
+      "en": "Code Review",
+      "secondary": [
+        {
+          "slug": "subagent-review",
+          "zh": "子代理审查",
+          "en": "Subagent Review"
+        },
+        {
+          "slug": "simplify",
+          "zh": "代码简化",
+          "en": "Simplify"
+        },
+        {
+          "slug": "lint",
+          "zh": "静态检查",
+          "en": "Lint"
+        },
+        {
+          "slug": "test-gen",
+          "zh": "测试生成",
+          "en": "Test Gen"
+        },
+        {
+          "slug": "diff-review",
+          "zh": "改动审查",
+          "en": "Diff Review"
+        },
+        {
+          "slug": "approval-gate",
+          "zh": "审批闸门",
+          "en": "Approval Gate"
+        },
+        {
+          "slug": "pr-comments",
+          "zh": "PR 评论",
+          "en": "Pr Comments"
+        }
+      ]
+    },
+    {
+      "slug": "architecture",
+      "zh": "架构可视化",
+      "en": "Architecture",
+      "secondary": [
+        {
+          "slug": "repo-graph",
+          "zh": "仓库图谱",
+          "en": "Repo Graph"
+        },
+        {
+          "slug": "sequence-diagram",
+          "zh": "时序图",
+          "en": "Sequence Diagram"
+        },
+        {
+          "slug": "flow-diagram",
+          "zh": "流程图",
+          "en": "Flow Diagram"
+        },
+        {
+          "slug": "dependency-graph",
+          "zh": "依赖图",
+          "en": "Dependency Graph"
+        },
+        {
+          "slug": "system-design",
+          "zh": "系统设计",
+          "en": "System Design"
+        },
+        {
+          "slug": "uml",
+          "zh": "UML",
+          "en": "UML"
+        },
+        {
+          "slug": "data-flow",
+          "zh": "数据流图",
+          "en": "Data Flow"
+        },
+        {
+          "slug": "lifecycle",
+          "zh": "生命周期图",
+          "en": "Lifecycle"
+        },
+        {
+          "slug": "interactive-diagram",
+          "zh": "交互图",
+          "en": "Interactive Diagram"
+        }
+      ]
+    },
+    {
+      "slug": "data-science",
+      "zh": "数据分析",
+      "en": "Data Science",
+      "secondary": [
+        {
+          "slug": "chat-analytics",
+          "zh": "对话式分析",
+          "en": "Chat Analytics"
+        },
+        {
+          "slug": "math-compute",
+          "zh": "数学计算",
+          "en": "Math Compute"
+        },
+        {
+          "slug": "dataframe",
+          "zh": "数据框",
+          "en": "Dataframe"
+        },
+        {
+          "slug": "visualization",
+          "zh": "可视化",
+          "en": "Visualization"
+        },
+        {
+          "slug": "spreadsheet",
+          "zh": "电子表格",
+          "en": "Spreadsheet"
+        },
+        {
+          "slug": "csv-json",
+          "zh": "CSV/JSON",
+          "en": "CSV Json"
+        },
+        {
+          "slug": "statistics",
+          "zh": "统计",
+          "en": "Statistics"
+        },
+        {
+          "slug": "notebooks",
+          "zh": "Notebook",
+          "en": "Notebooks"
+        },
+        {
+          "slug": "sql",
+          "zh": "SQL 查询",
+          "en": "SQL"
+        },
+        {
+          "slug": "ml-tools",
+          "zh": "机器学习",
+          "en": "Ml Tools"
+        }
+      ]
+    },
+    {
+      "slug": "academic-research",
+      "zh": "学术研究与文献",
+      "en": "Academic Research",
+      "secondary": [
+        {
+          "slug": "paper-search",
+          "zh": "论文检索",
+          "en": "Paper Search"
+        },
+        {
+          "slug": "zotero",
+          "zh": "Zotero",
+          "en": "Zotero"
+        },
+        {
+          "slug": "citation",
+          "zh": "引用核实",
+          "en": "Citation"
+        },
+        {
+          "slug": "literature-triage",
+          "zh": "文献分诊",
+          "en": "Literature Triage"
+        },
+        {
+          "slug": "evidence-map",
+          "zh": "证据配对",
+          "en": "Evidence Map"
+        },
+        {
+          "slug": "thesis-outline",
+          "zh": "论文提纲",
+          "en": "Thesis Outline"
+        },
+        {
+          "slug": "cn-academic",
+          "zh": "中文学术写作",
+          "en": "Cn Academic"
+        },
+        {
+          "slug": "deep-research",
+          "zh": "深度研究",
+          "en": "Deep Research"
+        },
+        {
+          "slug": "report-engine",
+          "zh": "报告引擎",
+          "en": "Report Engine"
+        },
+        {
+          "slug": "offline-mode",
+          "zh": "离线模式",
+          "en": "Offline Mode"
+        }
+      ]
+    },
+    {
+      "slug": "web-search",
+      "zh": "联网搜索与浏览器",
+      "en": "Web Search",
+      "secondary": [
+        {
+          "slug": "keyless-search",
+          "zh": "免 Key 搜索",
+          "en": "Keyless Search"
+        },
+        {
+          "slug": "multi-source",
+          "zh": "多源聚合",
+          "en": "Multi Source"
+        },
+        {
+          "slug": "agent-browser",
+          "zh": "Agent 浏览器",
+          "en": "Agent Browser"
+        },
+        {
+          "slug": "web-scrape",
+          "zh": "网页抓取",
+          "en": "Web Scrape"
+        },
+        {
+          "slug": "url-reader",
+          "zh": "链接读取",
+          "en": "Url Reader"
+        },
+        {
+          "slug": "search-ui",
+          "zh": "搜索面板",
+          "en": "Search UI"
+        },
+        {
+          "slug": "citations",
+          "zh": "结构化引用",
+          "en": "Citations"
+        },
+        {
+          "slug": "x-search",
+          "zh": "X 搜索",
+          "en": "X Search"
+        },
+        {
+          "slug": "bookmark",
+          "zh": "网页收藏",
+          "en": "Bookmark"
+        },
+        {
+          "slug": "offline-fallback",
+          "zh": "离线兜底",
+          "en": "Offline Fallback"
+        }
+      ]
+    },
+    {
+      "slug": "office-automation",
+      "zh": "办公自动化",
+      "en": "Office Automation",
+      "secondary": [
+        {
+          "slug": "report-gen",
+          "zh": "汇报生成",
+          "en": "Report Gen"
+        },
+        {
+          "slug": "brief-gen",
+          "zh": "Brief 生成",
+          "en": "Brief Gen"
+        },
+        {
+          "slug": "meeting-notes",
+          "zh": "会议纪要",
+          "en": "Meeting Notes"
+        },
+        {
+          "slug": "email",
+          "zh": "邮件",
+          "en": "Email"
+        },
+        {
+          "slug": "document-workflow",
+          "zh": "文档流程",
+          "en": "Document Workflow"
+        },
+        {
+          "slug": "data-agent",
+          "zh": "数据代理",
+          "en": "Data Agent"
+        },
+        {
+          "slug": "team-agent",
+          "zh": "协作团队",
+          "en": "Team Agent"
+        },
+        {
+          "slug": "gongwen",
+          "zh": "公文处理",
+          "en": "Gongwen"
+        },
+        {
+          "slug": "visual-card",
+          "zh": "可视化卡片",
+          "en": "Visual Card"
+        }
+      ]
+    },
+    {
+      "slug": "finance-ops",
+      "zh": "财务运营",
+      "en": "Finance Ops",
+      "secondary": [
+        {
+          "slug": "excel-chat",
+          "zh": "Excel 对话",
+          "en": "Excel Chat"
+        },
+        {
+          "slug": "ledger",
+          "zh": "台账",
+          "en": "Ledger"
+        },
+        {
+          "slug": "invoice",
+          "zh": "票据",
+          "en": "Invoice"
+        },
+        {
+          "slug": "tax",
+          "zh": "税务",
+          "en": "Tax"
+        },
+        {
+          "slug": "date-calc",
+          "zh": "期限计算",
+          "en": "Date Calc"
+        },
+        {
+          "slug": "office-suite",
+          "zh": "Office 三件套",
+          "en": "Office Suite"
+        },
+        {
+          "slug": "anydoc",
+          "zh": "文档转换",
+          "en": "Anydoc"
+        },
+        {
+          "slug": "balance",
+          "zh": "余额看板",
+          "en": "Balance"
+        },
+        {
+          "slug": "cost-split",
+          "zh": "费用分摊",
+          "en": "Cost Split"
+        },
+        {
+          "slug": "statement",
+          "zh": "报表",
+          "en": "Statement"
+        }
+      ]
+    },
+    {
+      "slug": "legal",
+      "zh": "法律法务",
+      "en": "Legal",
+      "secondary": [
+        {
+          "slug": "contract-review",
+          "zh": "合同审查",
+          "en": "Contract Review"
+        },
+        {
+          "slug": "law-lookup",
+          "zh": "法条检索",
+          "en": "Law Lookup"
+        },
+        {
+          "slug": "legal-writing",
+          "zh": "文书写作",
+          "en": "Legal Writing"
+        },
+        {
+          "slug": "compliance",
+          "zh": "合规检查",
+          "en": "Compliance"
+        },
+        {
+          "slug": "case-law",
+          "zh": "案例检索",
+          "en": "Case Law"
+        },
+        {
+          "slug": "clause-lib",
+          "zh": "条款库",
+          "en": "Clause Lib"
+        },
+        {
+          "slug": "risk-flag",
+          "zh": "风险标记",
+          "en": "Risk Flag"
+        },
+        {
+          "slug": "deadline",
+          "zh": "期限管理",
+          "en": "Deadline"
+        },
+        {
+          "slug": "evidence",
+          "zh": "证据整理",
+          "en": "Evidence"
+        },
+        {
+          "slug": "dispute",
+          "zh": "纠纷辅助",
+          "en": "Dispute"
+        }
+      ]
+    },
+    {
+      "slug": "education",
+      "zh": "教育培训",
+      "en": "Education",
+      "secondary": [
+        {
+          "slug": "explain",
+          "zh": "讲解",
+          "en": "Explain"
+        },
+        {
+          "slug": "mindmap",
+          "zh": "脑图",
+          "en": "Mindmap"
+        },
+        {
+          "slug": "tutor",
+          "zh": "答疑辅导",
+          "en": "Tutor"
+        },
+        {
+          "slug": "courseware",
+          "zh": "课件",
+          "en": "Courseware"
+        },
+        {
+          "slug": "classroom",
+          "zh": "课堂互动",
+          "en": "Classroom"
+        },
+        {
+          "slug": "quiz",
+          "zh": "测验",
+          "en": "Quiz"
+        },
+        {
+          "slug": "study-path",
+          "zh": "学习路径",
+          "en": "Study Path"
+        },
+        {
+          "slug": "memory-aid",
+          "zh": "记忆辅助",
+          "en": "Memory Aid"
+        },
+        {
+          "slug": "paper-reading",
+          "zh": "论文精读",
+          "en": "Paper Reading"
+        }
+      ]
+    },
+    {
+      "slug": "lifestyle",
+      "zh": "生活服务",
+      "en": "Lifestyle",
+      "secondary": [
+        {
+          "slug": "info-lookup",
+          "zh": "信息查询",
+          "en": "Info Lookup"
+        },
+        {
+          "slug": "price-compare",
+          "zh": "比价",
+          "en": "Price Compare"
+        },
+        {
+          "slug": "errands",
+          "zh": "跑腿代办",
+          "en": "Errands"
+        },
+        {
+          "slug": "travel-route",
+          "zh": "出行路线",
+          "en": "Travel Route"
+        },
+        {
+          "slug": "im-push",
+          "zh": "结果推送",
+          "en": "IM Push"
+        },
+        {
+          "slug": "video-recap",
+          "zh": "视频回看",
+          "en": "Video Recap"
+        },
+        {
+          "slug": "map-tools",
+          "zh": "地图工具",
+          "en": "Map Tools"
+        },
+        {
+          "slug": "pocket",
+          "zh": "稍后读",
+          "en": "Pocket"
+        },
+        {
+          "slug": "computer-use",
+          "zh": "桌面代办",
+          "en": "Computer Use"
+        },
+        {
+          "slug": "daily-planner",
+          "zh": "日程规划",
+          "en": "Daily Planner"
+        }
+      ]
+    },
+    {
+      "slug": "vision",
+      "zh": "视觉与 OCR",
+      "en": "Vision",
+      "secondary": [
+        {
+          "slug": "image-qa",
+          "zh": "图片问答",
+          "en": "Image Qa"
+        },
+        {
+          "slug": "ocr",
+          "zh": "文字提取",
+          "en": "OCR"
+        },
+        {
+          "slug": "multi-image",
+          "zh": "多图比较",
+          "en": "Multi Image"
+        },
+        {
+          "slug": "long-screenshot",
+          "zh": "长截图 OCR",
+          "en": "Long Screenshot"
+        },
+        {
+          "slug": "screenshot-to-ui",
+          "zh": "截图还原 UI",
+          "en": "Screenshot To UI"
+        },
+        {
+          "slug": "grounding",
+          "zh": "元素定位",
+          "en": "Grounding"
+        },
+        {
+          "slug": "pixel-diff",
+          "zh": "像素对比",
+          "en": "Pixel Diff"
+        },
+        {
+          "slug": "vision-router",
+          "zh": "视觉路由",
+          "en": "Vision Router"
+        },
+        {
+          "slug": "clipboard",
+          "zh": "剪贴板分析",
+          "en": "Clipboard"
+        },
+        {
+          "slug": "svg-trace",
+          "zh": "矢量化",
+          "en": "SVG Trace"
+        }
+      ]
+    },
+    {
+      "slug": "voice",
+      "zh": "语音与音频",
+      "en": "Voice",
+      "secondary": [
+        {
+          "slug": "tts",
+          "zh": "语音合成",
+          "en": "TTS"
+        },
+        {
+          "slug": "voice-input",
+          "zh": "语音输入",
+          "en": "Voice Input"
+        },
+        {
+          "slug": "transcribe",
+          "zh": "转写",
+          "en": "Transcribe"
+        },
+        {
+          "slug": "voice-clone",
+          "zh": "声音克隆",
+          "en": "Voice Clone"
+        },
+        {
+          "slug": "audio-player",
+          "zh": "音频播放",
+          "en": "Audio Player"
+        },
+        {
+          "slug": "podcast",
+          "zh": "播客",
+          "en": "Podcast"
+        },
+        {
+          "slug": "sound-effects",
+          "zh": "音效",
+          "en": "Sound Effects"
+        },
+        {
+          "slug": "music-gen",
+          "zh": "音乐生成",
+          "en": "Music Gen"
+        },
+        {
+          "slug": "wake-word",
+          "zh": "唤醒词",
+          "en": "Wake Word"
+        },
+        {
+          "slug": "multi-speaker",
+          "zh": "多说话人",
+          "en": "Multi Speaker"
+        }
+      ]
+    },
+    {
+      "slug": "memory",
+      "zh": "长期记忆",
+      "en": "Memory",
+      "secondary": [
+        {
+          "slug": "cross-session",
+          "zh": "跨会话记忆",
+          "en": "Cross Session"
+        },
+        {
+          "slug": "memory-graph",
+          "zh": "记忆图谱",
+          "en": "Memory Graph"
+        },
+        {
+          "slug": "memory-evolve",
+          "zh": "记忆进化",
+          "en": "Memory Evolve"
+        },
+        {
+          "slug": "mnemon",
+          "zh": "Mnemon",
+          "en": "Mnemon"
+        },
+        {
+          "slug": "core-memory",
+          "zh": "核心记忆",
+          "en": "Core Memory"
+        },
+        {
+          "slug": "episodic",
+          "zh": "情景记忆",
+          "en": "Episodic"
+        },
+        {
+          "slug": "semantic",
+          "zh": "语义召回",
+          "en": "Semantic"
+        },
+        {
+          "slug": "distillation",
+          "zh": "记忆蒸馏",
+          "en": "Distillation"
+        },
+        {
+          "slug": "memory-provenance",
+          "zh": "记忆溯源",
+          "en": "Memory Provenance"
+        },
+        {
+          "slug": "memory-ui",
+          "zh": "记忆面板",
+          "en": "Memory UI"
+        }
+      ]
+    },
+    {
+      "slug": "context-session",
+      "zh": "上下文与会话管理",
+      "en": "Context Session",
+      "secondary": [
+        {
+          "slug": "context-insight",
+          "zh": "上下文洞察",
+          "en": "Context Insight"
+        },
+        {
+          "slug": "rewind",
+          "zh": "回退",
+          "en": "Rewind"
+        },
+        {
+          "slug": "snapshot",
+          "zh": "快照",
+          "en": "Snapshot"
+        },
+        {
+          "slug": "archive",
+          "zh": "归档",
+          "en": "Archive"
+        },
+        {
+          "slug": "session-map",
+          "zh": "会话地图",
+          "en": "Session Map"
+        },
+        {
+          "slug": "handoff",
+          "zh": "交接",
+          "en": "Handoff"
+        },
+        {
+          "slug": "chat-import",
+          "zh": "会话导入",
+          "en": "Chat Import"
+        },
+        {
+          "slug": "compaction",
+          "zh": "压缩",
+          "en": "Compaction"
+        },
+        {
+          "slug": "branch",
+          "zh": "分支",
+          "en": "Branch"
+        },
+        {
+          "slug": "recovery",
+          "zh": "恢复",
+          "en": "Recovery"
+        }
+      ]
+    },
+    {
+      "slug": "agent-teams",
+      "zh": "智能体协作",
+      "en": "Agent Teams",
+      "secondary": [
+        {
+          "slug": "multi-agent",
+          "zh": "多智能体",
+          "en": "Multi Agent"
+        },
+        {
+          "slug": "subagent",
+          "zh": "子代理",
+          "en": "Subagent"
+        },
+        {
+          "slug": "model-routing",
+          "zh": "模型路由",
+          "en": "Model Routing"
+        },
+        {
+          "slug": "advisor-chain",
+          "zh": "顾问链",
+          "en": "Advisor Chain"
+        },
+        {
+          "slug": "role-persona",
+          "zh": "角色设定",
+          "en": "Role Persona"
+        },
+        {
+          "slug": "delegation",
+          "zh": "任务委派",
+          "en": "Delegation"
+        },
+        {
+          "slug": "review-agent",
+          "zh": "审查代理",
+          "en": "Review Agent"
+        },
+        {
+          "slug": "orchestration",
+          "zh": "编排",
+          "en": "Orchestration"
+        },
+        {
+          "slug": "shared-memory",
+          "zh": "共享记忆",
+          "en": "Shared Memory"
+        },
+        {
+          "slug": "team-dashboard",
+          "zh": "团队看板",
+          "en": "Team Dashboard"
+        }
+      ]
+    },
+    {
+      "slug": "model-access",
+      "zh": "模型接入",
+      "en": "Model Access",
+      "secondary": [
+        {
+          "slug": "subscription",
+          "zh": "订阅复用",
+          "en": "Subscription"
+        },
+        {
+          "slug": "codex",
+          "zh": "Codex",
+          "en": "Codex"
+        },
+        {
+          "slug": "command-code",
+          "zh": "Command Code",
+          "en": "Command Code"
+        },
+        {
+          "slug": "cline-pass",
+          "zh": "Cline Pass",
+          "en": "Cline Pass"
+        },
+        {
+          "slug": "workbuddy",
+          "zh": "WorkBuddy",
+          "en": "Workbuddy"
+        },
+        {
+          "slug": "free-model",
+          "zh": "免费模型",
+          "en": "Free Model"
+        },
+        {
+          "slug": "account-pool",
+          "zh": "账号池",
+          "en": "Account Pool"
+        },
+        {
+          "slug": "provider-bridge",
+          "zh": "服务商桥接",
+          "en": "Provider Bridge"
+        },
+        {
+          "slug": "model-switch",
+          "zh": "模型切换",
+          "en": "Model Switch"
+        },
+        {
+          "slug": "quota",
+          "zh": "额度聚合",
+          "en": "Quota"
+        }
+      ]
+    },
+    {
+      "slug": "im-bridges",
+      "zh": "即时通讯接入",
+      "en": "IM Bridges",
+      "secondary": [
+        {
+          "slug": "feishu",
+          "zh": "飞书",
+          "en": "Feishu"
+        },
+        {
+          "slug": "wechat",
+          "zh": "微信",
+          "en": "Wechat"
+        },
+        {
+          "slug": "telegram",
+          "zh": "Telegram",
+          "en": "Telegram"
+        },
+        {
+          "slug": "dingtalk",
+          "zh": "钉钉",
+          "en": "Dingtalk"
+        },
+        {
+          "slug": "qq",
+          "zh": "QQ",
+          "en": "Qq"
+        },
+        {
+          "slug": "wecom",
+          "zh": "企业微信",
+          "en": "Wecom"
+        },
+        {
+          "slug": "slack",
+          "zh": "Slack",
+          "en": "Slack"
+        },
+        {
+          "slug": "discord",
+          "zh": "Discord",
+          "en": "Discord"
+        },
+        {
+          "slug": "whatsapp",
+          "zh": "WhatsApp",
+          "en": "Whatsapp"
+        },
+        {
+          "slug": "multi-channel",
+          "zh": "多渠道",
+          "en": "Multi Channel"
+        }
+      ]
+    },
+    {
+      "slug": "remote-wsl",
+      "zh": "远程访问与 WSL",
+      "en": "Remote WSL",
+      "secondary": [
+        {
+          "slug": "mobile-remote",
+          "zh": "手机遥控",
+          "en": "Mobile Remote"
+        },
+        {
+          "slug": "ssh-workspace",
+          "zh": "SSH 工作区",
+          "en": "SSH Workspace"
+        },
+        {
+          "slug": "qr-pairing",
+          "zh": "扫码配对",
+          "en": "Qr Pairing"
+        },
+        {
+          "slug": "relay",
+          "zh": "Relay 中转",
+          "en": "Relay"
+        },
+        {
+          "slug": "webrtc",
+          "zh": "WebRTC",
+          "en": "Webrtc"
+        },
+        {
+          "slug": "device-auth",
+          "zh": "设备授权",
+          "en": "Device Auth"
+        },
+        {
+          "slug": "wsl-interop",
+          "zh": "WSL 互操作",
+          "en": "WSL Interop"
+        },
+        {
+          "slug": "file-sync",
+          "zh": "文件同步",
+          "en": "File Sync"
+        },
+        {
+          "slug": "remote-terminal",
+          "zh": "远程终端",
+          "en": "Remote Terminal"
+        },
+        {
+          "slug": "multi-instance",
+          "zh": "多实例",
+          "en": "Multi Instance"
+        }
+      ]
+    },
+    {
+      "slug": "security-audit",
+      "zh": "安全审计",
+      "en": "Security Audit",
+      "secondary": [
+        {
+          "slug": "local-scan",
+          "zh": "本地扫描",
+          "en": "Local Scan"
+        },
+        {
+          "slug": "permission-gate",
+          "zh": "权限闸门",
+          "en": "Permission Gate"
+        },
+        {
+          "slug": "risk-review",
+          "zh": "风险评测",
+          "en": "Risk Review"
+        },
+        {
+          "slug": "command-guard",
+          "zh": "命令护栏",
+          "en": "Command Guard"
+        },
+        {
+          "slug": "credential-check",
+          "zh": "凭据检查",
+          "en": "Credential Check"
+        },
+        {
+          "slug": "sandbox",
+          "zh": "沙箱",
+          "en": "Sandbox"
+        },
+        {
+          "slug": "audit-log",
+          "zh": "审计日志",
+          "en": "Audit Log"
+        },
+        {
+          "slug": "leak-detect",
+          "zh": "泄露检测",
+          "en": "Leak Detect"
+        },
+        {
+          "slug": "dependency-audit",
+          "zh": "依赖审计",
+          "en": "Dependency Audit"
+        },
+        {
+          "slug": "vulnerability",
+          "zh": "漏洞扫描",
+          "en": "Vulnerability"
+        }
+      ]
+    },
+    {
+      "slug": "usage-billing",
+      "zh": "用量与成本",
+      "en": "Usage Billing",
+      "secondary": [
+        {
+          "slug": "token-count",
+          "zh": "Token 计数",
+          "en": "Token Count"
+        },
+        {
+          "slug": "cost-meter",
+          "zh": "费用计量",
+          "en": "Cost Meter"
+        },
+        {
+          "slug": "usage-stats",
+          "zh": "用量统计",
+          "en": "Usage Stats"
+        },
+        {
+          "slug": "billing-panel",
+          "zh": "账单面板",
+          "en": "Billing Panel"
+        },
+        {
+          "slug": "balance-widget",
+          "zh": "余额挂件",
+          "en": "Balance Widget"
+        },
+        {
+          "slug": "budget",
+          "zh": "预算",
+          "en": "Budget"
+        },
+        {
+          "slug": "peak-offpeak",
+          "zh": "峰谷计价",
+          "en": "Peak Offpeak"
+        },
+        {
+          "slug": "heatmap",
+          "zh": "热力图",
+          "en": "Heatmap"
+        },
+        {
+          "slug": "per-model",
+          "zh": "按模型",
+          "en": "Per Model"
+        },
+        {
+          "slug": "multi-provider",
+          "zh": "多供应商",
+          "en": "Multi Provider"
+        }
+      ]
+    },
+    {
+      "slug": "entertainment",
+      "zh": "娱乐陪伴",
+      "en": "Entertainment",
+      "secondary": [
+        {
+          "slug": "desktop-pet",
+          "zh": "桌宠",
+          "en": "Desktop Pet"
+        },
+        {
+          "slug": "meme",
+          "zh": "表情包",
+          "en": "Meme"
+        },
+        {
+          "slug": "bili",
+          "zh": "刷 B 站",
+          "en": "Bili"
+        },
+        {
+          "slug": "diary",
+          "zh": "日记",
+          "en": "Diary"
+        },
+        {
+          "slug": "persona",
+          "zh": "人设",
+          "en": "Persona"
+        },
+        {
+          "slug": "mini-game",
+          "zh": "小游戏",
+          "en": "Mini Game"
+        },
+        {
+          "slug": "companion",
+          "zh": "陪伴",
+          "en": "Companion"
+        },
+        {
+          "slug": "fun-widget",
+          "zh": "趣味挂件",
+          "en": "Fun Widget"
+        }
+      ]
+    }
+  ]
+}

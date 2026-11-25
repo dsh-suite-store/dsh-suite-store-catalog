@@ -1,0 +1,15 @@
+id: dpharness-web-scrape
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '联网检索与浏览器代驾'
+  en: 'Web Search & Browser Control'
+summary:
+  zh: '免密钥联网搜索，还能让智能体操控真实浏览器'
+  en: 'Keyless web search and an agent browser'
+category:
+  primary: web-search
+members:
+  - plugin: DDDMUC/dsh-free-search
+  - plugin: anysearch-team/anysearch-dsh
+  - plugin: Fisfzy/dsh-ego-browser

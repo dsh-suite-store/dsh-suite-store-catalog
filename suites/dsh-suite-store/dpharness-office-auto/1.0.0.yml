@@ -1,0 +1,18 @@
+id: dpharness-office-auto
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '办公自动化工作台'
+  en: 'Office Automation Workbench'
+summary:
+  zh: '任务看板、多智能体协作、公文处理与交互界面生成。'
+  en: 'Task boards, agent teams, official docs.'
+category:
+  primary: office-automation
+members:
+  - plugin: shengsheng90/DSH-taskboard
+  - plugin: omdsh-dev/dsh-data-agent
+  - plugin: NanmiCoder/dsh-agent-teams
+  - plugin: Nagi-ovo/dsh-visualize
+  - plugin: linhut/gongwen-skill
+  - plugin: omdsh-dev/dsh-genui

@@ -1,0 +1,15 @@
+id: dph-dsh-cost-insight-part1-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: 'API 用量与成本洞察'
+  en: 'API Cost & Usage Insights'
+summary:
+  zh: '追踪 API 花费与各家用量，还能让 AI 查库分析。'
+  en: 'Track API spend & usage; AI queries DB.'
+category:
+  primary: usage-billing
+members:
+  - plugin: Han-1413141/dsh-cost-meter
+  - plugin: Ychris12138/dsh-usage-stats
+  - plugin: omdsh-dev/dsh-data-agent

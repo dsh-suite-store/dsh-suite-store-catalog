@@ -1,0 +1,16 @@
+id: bundles-student-part2-5
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '学习进阶套装'
+  en: 'Study Booster Kit'
+summary:
+  zh: '整理记忆、导入对话、优化提问并可一键回退。'
+  en: 'Organize memory, chats and rewind.'
+category:
+  primary: education
+members:
+  - plugin: omdsh-dev/dsh-mnemon
+  - plugin: Nwflower/dsh-chat-import
+  - plugin: seven282/oss-prompt-optimizer
+  - plugin: SiriLee/dsh-rewind

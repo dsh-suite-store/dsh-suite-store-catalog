@@ -1,0 +1,18 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：HXH (DSH PackForge market) — https://dsh-packforge.github.io/dsh-pack-market/packs/hxh230802.pokemon/README.md
+# 证据：PackForge 官方 dsh-pack-market 该包 manifest v5/type=profile，作者 HXH。README 原文「加入了宝可梦宠物已经宝可梦玩法，可以 /mon start 启动」。清单（bundleCount=4）中的两个实质插件 bundle：dsh-wildmon（npm=null git-only，manifest 依赖 github:swaylq/dsh-wildmon）、@hellosz/dsh-pets（npm=@hellosz/dsh-pets）。另两个 bundle 是官方基座 @deepseek-ai/dsh-base 与 @deepseek-ai/dsh-web-app，二者不在 awesome-dsh-plugin 索引中（官方基座，非第三方插件），故排除，最终成员 4→2。
+id: packforge-pokemon-fun
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '宝可梦桌宠与捕捉玩法'
+  en: 'Pokemon Pets & Catching Game'
+summary:
+  zh: '养宝可梦像素桌宠，工作时投球捕捉精灵。'
+  en: 'Pixel pets and Pokemon catching at work.'
+category:
+  primary: entertainment
+  secondary: desktop-pet
+members:
+  - plugin: "swaylq/dsh-wildmon"
+  - plugin: "hellosz/dsh-pets"

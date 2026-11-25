@@ -1,0 +1,19 @@
+# 来源：DPharness / DeepSeek Harness Hub — https://dpharness.com/sets/dsh-web-scrape?period=2026-10
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dpharness-2026-10-web-scrape
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '联网搜索与网页抓取（2026-10）'
+  en: 'Web Search & Scraping (2026-10)'
+summary:
+  zh: '免 key 多引擎搜索，还能驱动真实浏览器抓网页。'
+  en: 'Keyless multi-engine search and browser.'
+category:
+  primary: web-search
+  secondary: web-scrape
+members:
+  - plugin: 'DDDMUC/dsh-free-search'
+  - plugin: 'anysearch-team/anysearch-dsh'
+  - plugin: 'anweat/dsh-web-search-pro'
+  - plugin: 'Fisfzy/dsh-ego-browser'

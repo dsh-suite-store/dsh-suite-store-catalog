@@ -1,0 +1,21 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-notification-suite
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '多渠道通知提醒'
+  en: 'Multi-Channel Notifications'
+summary:
+  zh: '中文、钉钉与企业微信，任务完成及时提醒。'
+  en: 'Desktop, WeChat and WeCom task alerts.'
+category:
+  primary: im-bridges
+  secondary: multi-channel
+members:
+  - plugin: '117BS/dsh-perlica-ding'
+  - plugin: 'CAOGGL/dsh-ding'
+  - plugin: 'huguangyu666/dsh-plugin-notify'
+  - plugin: 'pitetow/dsh-notify-on-complete'
+  - plugin: 'wendayuan/dsh-weixin'
+  - plugin: 'michaelcode-wang/dsh-wecom'

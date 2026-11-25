@@ -1,0 +1,459 @@
+name: validate
+
+# Two jobs, one rule each:
+#   validate  — a PR must not merge with a broken submission (G1–G12).
+#   publish   — a merge to main rebuilds dist/ and publishes it to npm.
+#
+# The publish job runs on main only. A PR that passes validation still does not
+# publish anything; that is what makes "review before merge" mean something.
+
+# TRUST BOUNDARY (why `pull_request_target`, not `pull_request`):
+#   Under `pull_request`, GitHub runs the WORKFLOW FILE FROM THE PR. A PR that
+#   deleted the restore step, changed `test` to `true`, or made `check` exit 0
+#   produced a green required check with no gate having run. The same applied to
+#   a PR-added `.pnpmfile.cjs`, which pnpm executes at install time.
+#
+#   `pull_request_target` loads the workflow from the DEFAULT BRANCH instead.
+#   This job checks out base TOOLING and overlays ONLY the PR's `suites/` YAML
+#   as data. No PR script, package.json, lockfile, pnpm hook or workflow file is
+#   ever written to disk or executed. G1–G12 therefore describe the submission,
+#   not whatever the submitter changed the validator to say.
+on:
+  # NO `paths` filter on the PR event. It used to list suites/, scripts/,
+  # schema/ and this workflow — so a PR touching only `tests/`, `package.json`,
+  # `pnpm-lock.yaml`, `.pnpmfile.cjs` or `.npmrc` triggered NOTHING and got no
+  # required check at all. A filter that has to enumerate every toolchain path
+  # will keep missing one; validating every PR is cheap by comparison.
+  #
+  # `push` keeps its filter: only a submission change warrants a release.
+  pull_request_target:
+  push:
+    branches: [main]
+    paths:
+      - 'suites/**'
+      - 'scripts/**'
+      - 'schema/**'
+
+# Least privilege at the WORKFLOW level. `pull-requests: write` (needed only by
+# the comment step) was declared globally, so the publish job inherited it and
+# could create/close PRs it has no business touching. Each job now declares what
+# it needs and nothing more.
+permissions:
+  contents: read
+
+concurrency:
+  # Under `pull_request`, `github.ref` was the unique `refs/pull/N/merge`, so
+  # each PR had its own group. Under `pull_request_target` it is the BASE ref —
+  # using it here would put every PR in one group and cancel each other's
+  # validation. Key on the PR number for validation, the branch for publish.
+  group: ${{ github.event_name == 'pull_request_target' && format('catalog-pr-{0}', github.event.pull_request.number) || format('catalog-{0}', github.ref) }}
+  # Cancelling a superseded validation is desirable; cancelling a release
+  # between `npm publish` and `upload-artifact` is not.
+  cancel-in-progress: ${{ github.event_name == 'pull_request_target' }}
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-latest
+    # A hung install or download must not hold a runner for the default 6 hours.
+    timeout-minutes: 15
+    # `pull-requests: write` is for the result comment at the end of this job
+    # only. It is declared HERE rather than at the workflow level so the publish
+    # job (and any future job) does not inherit PR write access.
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      # Checkout the BASE branch. Under pull_request_target this is the default
+      # branch, and the workflow file itself also comes from there: nothing the
+      # PR contains is executed. No secrets are needed by any step below.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          persist-credentials: false
+          fetch-depth: 0 # git log dates feed the card's added/updated fields
+
+      # Download the PR's suites/ as DATA ONLY — an archive, never a checkout.
+      # PR-authored scripts, package.json, pnpm-lock.yaml, .pnpmfile.cjs and
+      # .github/** are never materialised in this workspace.
+      - name: Overlay the PR's suites as data
+        env:
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${GITHUB_REPOSITORY}/tarball/$PR_SHA" > pr.tar.gz
+          mkdir -p /tmp/pr-suites
+          tar -xzf pr.tar.gz -C /tmp/pr-suites --wildcards '*/suites/*'
+          # The archive has a single top-level <owner>-<repo>-<sha>/ directory.
+          src=$(find /tmp/pr-suites -mindepth 1 -maxdepth 1 -type d | head -n1)
+          # Copy ONLY regular submission YAML. This rejects a PR-supplied
+          # suites/.gitignore (which made `git add -A` silently omit the YAML
+          # from the diff while the worktree check still saw it), dotfiles and
+          # symlinks pointing outside the workspace.
+          count=$(bash scripts/overlay-suites.sh "$src" suites)
+          echo "overlaid $count submission file(s) from PR $PR_SHA"
+          # -f as well: even if a future helper regression lets a hidden file
+          # through, the committed diff must reflect exactly what was checked.
+          git -c user.email=validate@localhost -c user.name=validate add -f -A -- suites
+          # A PR that touches only scripts/, schema/ or this workflow changes no
+          # submission, so the overlay is identical to base and there is nothing
+          # to commit. `git commit` then exits 1 with "nothing to commit" and
+          # failed a perfectly legitimate tooling PR. Commit only when staged
+          # content actually differs.
+          if git diff --cached --quiet; then
+            echo "no submission changes to commit (tooling-only PR)"
+          else
+            git -c user.email=validate@localhost -c user.name=validate commit -q -m "local validation overlay of PR suites"
+          fi
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # The schema's category enums are generated from schema/categories.json;
+      # a hand edit (or a categories change without a regeneration) fails here
+      # instead of silently rejecting valid bundles or accepting stale slugs.
+      - name: Schema is in sync with categories.json
+        run: node scripts/sync-schema.mjs --check
+
+      # Unit tests for the parsing/ordering/gate logic. No network.
+      - name: Tests
+        run: pnpm test
+
+      # G1 and G4 are cheap and catch the mistakes a first-time contributor
+      # actually makes: a path that disagrees with the file, a member list of
+      # one, a duplicate key. Run them across the whole repo so an unrelated
+      # edit cannot hide a broken file.
+      # The catalogue (11k plugins, ~15 MB) is what turns `plugin: owner/name`
+      # into npm/version/description/capabilities. Cached between runs: it
+      # changes daily, and a 15 MB download per PR is a 15 MB download per PR.
+      - name: Date stamp for the index cache
+        id: stamp
+        run: echo "day=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache the plugin index
+        uses: actions/cache@v4
+        with:
+          path: .cache/plugins.json
+          # Keyed by day, not by run_id: a run_id key never matches, so every
+          # PR restored the old entry AND saved a fresh ~15 MB one.
+          key: plugin-index-${{ steps.stamp.outputs.day }}
+          restore-keys: plugin-index-
+
+      - name: Fetch the plugin index
+        run: |
+          mkdir -p .cache
+          if [ ! -s .cache/plugins.json ]; then
+            curl -fsSL --retry 3 --max-time 180 https://awesome-dsh-plugin.com/plugins.json -o .cache/plugins.json
+          fi
+
+      # The whole repository, not just the PR's files: a submission that breaks
+      # a sibling has to be caught before merge, because the release job would
+      # otherwise build over it. `check <path>` exists for a contributor
+      # iterating locally on one file.
+      #
+      # `--base` is what makes G3 apply to files this PR ADDS: without it the
+      # checker cannot tell a newly added `0.9.0` (a submission, must be
+      # rejected) from a pre-existing `0.9.0` (history, allowed), and it used to
+      # accept the former whenever a newer version already existed.
+      #
+      # The ref goes through `env:` rather than into the shell source, matching
+      # the owner gate below.
+      - name: Validate submissions
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        # The checkout has `origin/<base>` (fetch-depth 0) and HEAD is the local
+        # commit that overlaid the PR's suites, so this diff is exactly the PR's
+        # change to suites/ — with the TRUSTED validator from the base branch.
+        run: node scripts/catalog.mjs check --base "origin/$BASE_REF" --index .cache/plugins.json
+
+      # A bundle directory belongs to one GitHub identity. GitHub organisations
+      # cannot open PRs — the actor is always a human login — so compare against
+      # the fork's owner as well (a member PR may come from an org-owned fork).
+      # There is NO blanket bypass: changing suites/dsh-suite-store/ requires
+      # the PR to come from a fork/actor actually named dsh-suite-store, which
+      # a human account can never be. Maintain built-in packs by pushing a
+      # branch in this repository directly (where this step is skipped), not
+      # through a personal fork. Direct (non-fork) PRs skip this step entirely.
+      - name: Owner matches the directory
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        # Event data is attacker-influenced (branch and fork names): passing it
+        # through `env:` keeps it out of the shell source entirely.
+        env:
+          ACTOR: ${{ github.event.pull_request.user.login }}
+          FORK_OWNER: ${{ github.event.pull_request.head.repo.owner.login }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          changed=$(git diff --name-only "origin/$BASE_REF"...HEAD -- 'suites/**')
+          owner_from_path=$(echo "$changed" | sed -n 's|^suites/\([^/]*\)/.*|\1|p' | sort -u)
+          actor="$ACTOR"
+          fork_owner="$FORK_OWNER"
+          for owner in $owner_from_path; do
+            if [ "$owner" = "$actor" ] || [ "$owner" = "$fork_owner" ]; then
+              continue
+            fi
+            echo "::error file=suites/$owner::suite directory is owned by $owner, but this PR is from $actor"
+            exit 1
+          done
+
+      - name: Comment the result
+        if: always()
+        # A fork PR gets a read-only GITHUB_TOKEN, so `issues.createComment`
+        # answers 403. With `if: always()` that turned a green validation red.
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Quoted: unquoted, GitHub substituted `success` and the script threw
+            // `ReferenceError: success is not defined`, failing every passing run.
+            const ok = '${{ job.status }}' === 'success';
+            const body = ok
+              ? '**Validation passed.** A maintainer will review the content before merge.'
+              : '**Validation failed.** The job log names the gate (G1–G12) and the exact path. Fix and push again — the check re-runs automatically.';
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+  # The toolchain check: run the PR's OWN scripts and tests.
+  #
+  # The `validate` job above deliberately runs BASE tooling, which means a PR
+  # that only changes `scripts/` or `tests/` gets a green check while its code
+  # is never executed — the first time it runs is `pnpm run build` in the
+  # publish job, after merge. This job closes that gap.
+  #
+  # It is safe to run untrusted code here because the job is powerless:
+  #   - no secrets are referenced (no NPM_TOKEN, so nothing to steal);
+  #   - `permissions: contents: read` only, and no pull-requests scope, so it
+  #     cannot comment, label or push;
+  #   - `persist-credentials: false`, so the checkout token is not on disk;
+  #   - nothing is published and no artifact leaves the runner.
+  # A PR that breaks its own tests goes red here instead of after merge.
+  toolchain:
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      # The PR's head, in a throwaway workspace. `persist-credentials: false`
+      # because this tree is attacker-controlled: a script that reads
+      # `.git/config` must find no token.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # `--ignore-scripts` at install time: this repository has no legitimate
+      # install hook, and running one would execute PR code before any of the
+      # checks below. The PR's own code is exercised by `pnpm test`, which is
+      # the point of this job.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Schema is in sync with categories.json
+        run: node scripts/sync-schema.mjs --check
+
+      # A FIXED command, not `pnpm test`. The latter runs whatever the PR put in
+      # package.json's `test` script, so a submitter could set `"test": "true"`
+      # and get a green toolchain check with zero tests executed. Naming the
+      # runner and the glob directly cannot be redirected.
+      - name: Tests
+        run: node --test "tests/**/*.test.mjs"
+
+      - name: Catalog check
+        run: node scripts/catalog.mjs check
+
+  # BUILD — no secrets, no publish credential, nothing durable.
+  #
+  # This job runs the repository's own code (`pnpm install`, `pnpm run build`).
+  # That code is attacker-influenced the moment a PR is merged, and a build step
+  # can leave state behind FOR THE NEXT SHELL in the same job: append to
+  # $GITHUB_ENV (`BASH_ENV=/path/to/evil.sh`, which bash sources before every
+  # subsequent script) or to $GITHUB_PATH (a fake `npm` earlier on PATH). A later
+  # step in the SAME job that holds NPM_TOKEN would then run through the attacker's
+  # shell. Cleaning up is not a defence — the contamination already happened.
+  #
+  # Splitting the jobs is: this one never sees the token, and the publish job
+  # below never checks out or builds the repository.
+  build:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      # `persist-credentials: false` keeps the checkout token out of
+      # `.git/config`: the build scripts read the remote URL, and a script that
+      # examined it would otherwise find a live credential.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # `--ignore-scripts`: this repository has no legitimate install hook, and
+      # running one would execute PR-authored code before any check.
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+
+      # The build probes npm for stars/scripts/capabilities. A registry hiccup
+      # degrades those fields; it must not block a release (see build.mjs).
+      # Build fetches the live index itself: a release must be as fresh as the
+      # moment it ships, and the cache that serves PRs may be a day old.
+      - name: Build dist/
+        run: pnpm run build
+
+      - name: Assemble the package root
+        id: version
+        run: |
+          # A REAL semver triple. `date -u +%Y.%m.%d.%H%M` produced four parts
+          # (2026.11.25.0813), which npm does not reject — it SILENTLY rewrites
+          # it to 2026.11.2-5.813, a PRERELEASE, so the published version is not
+          # what the workflow printed, `@latest` can stop pointing at the newest
+          # release, and the artifact name keeps the original string.
+          #
+          # GITHUB_RUN_NUMBER is repository-wide and monotonic, so 0.0.<n> is a
+          # valid, unique, increasing version on every push to main.
+          stamp="0.0.${GITHUB_RUN_NUMBER}"
+          # Guard: fail here rather than publish something npm would rewrite.
+          #
+          # The value arrives through the environment, not as a positional
+          # argument: `node -e "…" "$stamp"` yields argv[1]="0.0.42" under Linux
+          # bash but an EMPTY argv[1] under Git Bash.
+          VERSION="$stamp" node -e "
+            const version = process.env.VERSION;
+            if (!/^\d+\.\d+\.\d+$/.test(version)) {
+              console.error('::error::' + version + ' is not a plain MAJOR.MINOR.PATCH');
+              process.exit(1);
+            }
+          "
+          # The TARBALL LAYOUT IS THE PLUGIN'S CONTRACT. It fetches
+          # `package/index.json`, and the CDN source is `…@latest/index.json`.
+          # `dist/` is a build detail of THIS repository, so it is flattened
+          # away here: publishing `dist/index.json` would 404 every one of the
+          # plugin's three sources.
+          rm -rf pkgroot
+          mkdir -p pkgroot
+          cp -R dist/. pkgroot/
+          cp LICENSE pkgroot/LICENSE
+          # npm reads README from the directory being packed, not from the
+          # repository: without this the package page renders with no README at
+          # all.
+          cp README.md pkgroot/README.md
+          VERSION="$stamp" node -e "
+            const fs = require('fs');
+            // ALLOWLIST, not a copy. Reading the repository's package.json and
+            // mutating a few fields carried every unknown field into the
+            // published manifest: scripts (npm would run them at publish time),
+            // publishConfig (could redirect the registry), dependencies, and
+            // anything a future PR adds. The published package is a data file,
+            // so its manifest is built from scratch here.
+            const pkg = {
+              name: 'dsh-suite-store-catalog',
+              version: process.env.VERSION,
+              description: 'Published catalog for dsh-suite-store: submissions in YAML, artifacts in JSON.',
+              license: 'CC0-1.0',
+              // NO BACKTICKS ANYWHERE IN THIS BLOCK. It sits inside double
+              // quotes, so bash command-substitutes them.
+              files: ['index.json'],
+              main: 'index.json',
+            };
+            fs.writeFileSync('pkgroot/package.json', JSON.stringify(pkg, null, 2) + '\n');
+            const allowed = ['name', 'version', 'description', 'license', 'files', 'main'];
+            const extra = Object.keys(pkg).filter((key) => !allowed.includes(key));
+            if (extra.length > 0) {
+              console.error('::error::unexpected field(s) in the published manifest: ' + extra.join(', '));
+              process.exit(1);
+            }
+          "
+          # The artifact name must be the version npm actually published, so it
+          # is read back from the file that was just written.
+          published=$(node -p "require('./pkgroot/package.json').version")
+          echo "version=$published" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-pkgroot
+          path: pkgroot/
+          if-no-files-found: error
+
+  # PUBLISH — holds the credential, runs NO repository code.
+  #
+  # There is deliberately no checkout, no `pnpm install` and no `pnpm run build`
+  # here. The only inputs are the artifact built by the job above and the
+  # secret. Nothing a merged PR contains can execute in this job, so nothing can
+  # set BASH_ENV / GITHUB_PATH / a fake npm for the step that owns the token.
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: catalog-pkgroot
+          path: pkgroot
+
+      # Publish from a directory OUTSIDE the download, with a config file that
+      # exists nowhere else.
+      #
+      # Even with the job split, the package directory is data written by the
+      # build job. Three defences still apply, because the artifact crosses a
+      # trust boundary:
+      #   1. run in a temp dir containing ONLY the package — no repo .npmrc and
+      #      no package scripts in the config lookup;
+      #   2. `--ignore-scripts` so no lifecycle hook runs at publish time;
+      #   3. an explicit `--registry` plus a scoped auth line in a private
+      #      config file, so a stray config cannot redirect the token.
+      #
+      # `env -i` also drops any BASH_ENV/PATH the download could not have set
+      # but a future refactor might: the publish shell starts from a fixed
+      # environment, not an inherited one.
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          publish_dir="$(mktemp -d)"
+          cp -R pkgroot/. "$publish_dir"/
+          printf 'registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\nalways-auth=true\n' \
+            "$NODE_AUTH_TOKEN" > "$publish_dir/.npmrc"
+          cd "$publish_dir"
+          # `npm_config_userconfig` pins the config so a stray HOME .npmrc on the
+          # runner cannot redirect the request either.
+          npm_config_userconfig="$publish_dir/.npmrc" \
+            env -u BASH_ENV \
+            npm publish \
+              --access public \
+              --ignore-scripts \
+              --registry https://registry.npmjs.org/
+          cd - >/dev/null
+          rm -rf "$publish_dir"

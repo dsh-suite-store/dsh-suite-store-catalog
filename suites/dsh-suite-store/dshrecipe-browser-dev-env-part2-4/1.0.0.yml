@@ -1,0 +1,15 @@
+id: dshrecipe-browser-dev-env-part2-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '网页搜索多方案配置'
+  en: 'Web search, three ways'
+summary:
+  zh: '三种网页搜索方案，免密钥也能用内置搜索。'
+  en: 'Three search options, including keyless.'
+category:
+  primary: technical-writing
+members:
+  - plugin: 1624318455/dsh-plugin-tavily
+  - plugin: DDDMUC/dsh-free-search
+  - plugin: shinjiyu/dsh-plugin-search

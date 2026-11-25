@@ -1,0 +1,14 @@
+id: dph-dsh-cost-insight-part2-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '用量统计与数据分析'
+  en: 'Usage Stats & Data Analysis'
+summary:
+  zh: '汇总各家 Token 用量与余额，让 AI 帮你写 SQL。'
+  en: 'Sum token use & balances; AI writes SQL.'
+category:
+  primary: usage-billing
+members:
+  - plugin: Ychris12138/dsh-usage-stats
+  - plugin: omdsh-dev/dsh-data-agent

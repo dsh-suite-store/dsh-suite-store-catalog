@@ -1,0 +1,14 @@
+# Shell scripts must be checked out with LF on every platform.
+#
+# Git for Windows defaults to `core.autocrlf=true`, which rewrites these files
+# to CRLF. bash then reads `set -euo pipefail` as `pipefail\r` and dies with
+# "invalid option name" — so the overlay tests passed on WSL and failed on
+# Windows from a clean checkout. Declaring the rule here fixes every checkout
+# at once; making the test rewrite a temp copy would have hidden the same bug
+# from anyone running the script directly.
+*.sh text eol=lf
+
+# The workflow is executed by GitHub on Linux; keep its line endings stable so
+# a Windows editor cannot introduce invisible differences.
+*.yml text eol=lf
+*.yaml text eol=lf

@@ -1,0 +1,20 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-academic-writing
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '学术写作完整套装'
+  en: 'Academic writing toolkit'
+summary:
+  zh: '专注笔记、记忆、看图、配图与分阶段工具预设。'
+  en: 'Memory, vision, images and staged tools.'
+category:
+  primary: literary-writing
+  secondary: long-form
+members:
+  - plugin: '863683348/dsh-plugin-focus'
+  - plugin: 'moononnn/DeepSeek-Harness-Hanako-Memory'
+  - plugin: '54xkeee/dsh-vision'
+  - plugin: 'dickpy/dsh-imagegen'
+  - plugin: 'Jungod1121/dsh-anchored-standard'

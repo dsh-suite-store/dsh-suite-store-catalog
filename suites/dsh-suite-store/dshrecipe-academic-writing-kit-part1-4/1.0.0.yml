@@ -1,0 +1,16 @@
+id: dshrecipe-academic-writing-kit-part1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '长文写作专注套装'
+  en: 'Focused writing kit'
+summary:
+  zh: '专注笔记、长期记忆、看图与配图生成助力长文写作。'
+  en: 'Focus notes, memory, vision and images.'
+category:
+  primary: literary-writing
+members:
+  - plugin: 863683348/dsh-plugin-focus
+  - plugin: moononnn/DeepSeek-Harness-Hanako-Memory
+  - plugin: 54xkeee/dsh-vision
+  - plugin: dickpy/dsh-imagegen

@@ -1,0 +1,19 @@
+# 公开发布来源搜集（成员逐字来自发布者原文，未增删）。
+# 来源：https://dshmp.com/zh/plugins/commonworks-dsh-starter
+# 证据：@commonworks/dsh-starter README dev 模板 members 逐字：superpowers-dsh、cc-safety-net、@linxin666/dsh-client-ui-git-graph、dsh-deja；按索引 npm 精确映射。
+id: commonworks-tech-dev
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '开发安全工具包'
+  en: 'Developer Safety Kit'
+summary:
+  zh: '编码技能、危险命令拦截与 Git 图谱，助你安心写代码。'
+  en: 'Coding skills, guards and Git graphs.'
+category:
+  primary: development
+members:
+  - plugin: "LayneChai/superpowers-dsh"
+  - plugin: "kenryu42/cc-safety-net"
+  - plugin: "zhu1090093659/dsh-web#packages/dsh-git-graph"
+  - plugin: "vshulcz/deja-vu#extensions/dsh"

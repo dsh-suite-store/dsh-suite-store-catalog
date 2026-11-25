@@ -1,0 +1,16 @@
+id: dshmarket-heavy-use
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '重度使用高配工作台'
+  en: 'Power-user workbench'
+summary:
+  zh: '视觉识别、侧边栏工作台、多智能体团队与上下文管理。'
+  en: 'Vision, sidebar, agent teams, context.'
+category:
+  primary: getting-started
+members:
+  - plugin: liustack/modlens
+  - plugin: omdsh-dev/DSH-better-sidebar
+  - plugin: NanmiCoder/dsh-agent-teams
+  - plugin: bowenliang123/dsh-context

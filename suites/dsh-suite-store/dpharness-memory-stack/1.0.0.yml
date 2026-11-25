@@ -1,0 +1,19 @@
+id: dpharness-memory-stack
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '长期记忆与侧栏工作台'
+  en: 'Memory & Sidebar Workbench'
+summary:
+  zh: '跨会话图谱化记忆，侧栏里随时回溯项目背景。'
+  en: 'Graph memory across sessions in sidebar.'
+
+category:
+  primary: memory
+
+members:
+  - plugin: 'omdsh-dev/dsh-mnemon'
+  - plugin: 'adoresever/graph-memory'
+  - plugin: 'PerryLink/dsh-memento'
+  - plugin: 'omdsh-dev/DSH-better-sidebar'

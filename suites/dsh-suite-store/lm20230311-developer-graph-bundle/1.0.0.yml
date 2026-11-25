@@ -1,0 +1,20 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：LM20230311 (dsh-bundles) — https://github.com/LM20230311/dsh-bundles
+# 证据：bundles.json 中 id=developer 的 bundle，persona「开发者」、tagline「Git、MCP、诊断，开箱即用」，plugins[].name 逐字：@linxin666/dsh-client-ui-git-graph、dsh-mcp-panel、@michengai/dsh-skills-manager、dsh-update-checker、@moonquake2004/dsh-doctor；repository 字段指向 zhu1090093659/dsh-web/tree/main/packages/dsh-git-graph。按索引 npm/repo
+id: lm20230311-developer-graph-bundle
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: 'Git 与诊断工作台'
+  en: 'Git and diagnostics workbench'
+summary:
+  zh: 'Git 图谱、MCP 面板、技能与环境诊断一站式。'
+  en: 'Git graph, MCP, skills and diagnostics.'
+category:
+  primary: architecture
+members:
+  - plugin: "zhu1090093659/dsh-web#packages/dsh-git-graph"
+  - plugin: "PerryLink/dsh-mcp-panel"
+  - plugin: "MichengAI/dsh-skills-manager"
+  - plugin: "Airmetro/dsh-update-checker"
+  - plugin: "moonquake2004/dsh-doctor#plugin"

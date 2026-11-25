@@ -1,0 +1,16 @@
+id: dariandai-external
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '联网与扩展能力'
+  en: 'Connected Capabilities Pack'
+summary:
+  zh: '看图、联网搜索、MCP 接入与上下文洞察，扩展助手能力。'
+  en: 'Add vision, search, MCP and context.'
+category:
+  primary: plugin-management
+members:
+  - plugin: liustack/modlens
+  - plugin: liustack/modsearch
+  - plugin: Edge-Echo/dsh-mcp-bridge
+  - plugin: bowenliang123/dsh-context

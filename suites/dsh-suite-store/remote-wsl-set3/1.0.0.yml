@@ -1,0 +1,15 @@
+# 来源：https://raw.githubusercontent.com/863683348/dsh-recipe/main/lib/recipe-data.json — 真实发布包的连续子集（成员逐字，未增删替换）
+id: remote-wsl-set3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '手机/局域网访问'
+  en: 'Access from phone or LAN'
+summary:
+  zh: '用手机或同网段设备远程打开 DSH Web 界面。'
+  en: 'Open DSH web on phone or LAN.'
+category:
+  primary: remote-wsl
+members:
+  - plugin: mexiaosqwq/dsh-web-mobile
+  - plugin: Leon0555/dsh-lan-access

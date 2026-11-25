@@ -1,0 +1,20 @@
+# 来源：LM20230311 — https://github.com/LM20230311/dsh-bundles
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: bundles-designer
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '创意视觉工作台'
+  en: 'Creative Vision Studio'
+summary:
+  zh: '看图识图、换壁纸与 AI 生图，激发创意灵感。'
+  en: 'Read images, restyle and make art.'
+category:
+  primary: design-creative
+  secondary: vision-bridge
+members:
+  - plugin: 'liustack/modlens'
+  - plugin: 'RevolutionLA/dsh-dream-skin'
+  - plugin: 'ysr666/dsh-vision-router'
+  - plugin: 'elysia395/dsh-wallpaper-engine'
+  - plugin: 'dickpy/dsh-imagegen'

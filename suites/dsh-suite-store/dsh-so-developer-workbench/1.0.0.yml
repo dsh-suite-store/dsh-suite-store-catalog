@@ -1,0 +1,22 @@
+# 由维护者从公开发布来源搜集导入（发布者原文固定名单，未增删）。
+# 来源：dsh.so (编辑精选) — https://www.dsh.so/zh/packs/developer/
+# 证据：dsh.so「开发者工作台」页原文场景「写代码、跑终端、看架构图——把 agent 变成结对编程的另一半」，插件清单 6 个逐字：@zh667/TokenLedger、@ccch1mneyyy/dsh-TUI、@PerryLink/dsh-lsp-actions、@1841220388zzzcccxxx-star/dsh-git-graph、@omdsh-dev/DSH-better-sidebar、@FSMargoo/dsh-at-file。按索引 npm 字段映射到 owner/name（如 dsh-tokenledger→zh667/TokenLedger，dsh-git-graph→enoughpower/dsh-git-graph）。
+# 注：原文把 dsh-git-graph 写作 @1841220388zzzcccxxx-star/dsh-git-graph（GitHub 地址 github:1841220388zzzcccxxx-star/dsh-git-graph），但该 owner 在 awesome-dsh-plugin 索引中不存在；索引里 npm=dsh-git-graph 的仓库是 enoughpower/dsh-git-graph，故按索引取值。G6 要求成员必须在索引中，改成原文写法会导致构建失败。
+id: dsh-so-developer-workbench
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '开发者结对编程工作台'
+  en: 'Developer Pair-Programming Workbench'
+summary:
+  zh: '写代码、跑终端、看代码结构，让智能体成为结对伙伴'
+  en: 'Code, run terminals, see structure'
+category:
+  primary: architecture
+members:
+  - plugin: "zh667/TokenLedger"
+  - plugin: "ccch1mneyyy/dsh-TUI"
+  - plugin: "PerryLink/dsh-lsp-actions"
+  - plugin: "enoughpower/dsh-git-graph"
+  - plugin: "omdsh-dev/DSH-better-sidebar"
+  - plugin: "FSMargoo/dsh-at-file"

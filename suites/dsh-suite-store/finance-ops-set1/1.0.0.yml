@@ -1,0 +1,16 @@
+# 来源：https://github.com/PerryLink/dsh-plugins — 真实发布包的连续子集（成员逐字，未增删替换）
+id: finance-ops-set1
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '电子发票与对账'
+  en: 'E-invoices and reconciliation'
+summary:
+  zh: '导入电子发票、核对银行流水，做应付三单匹配。'
+  en: 'E-invoices, bank and AP reconciliation.'
+category:
+  primary: finance-ops
+members:
+  - plugin: PerryLink/dsh-einvoice
+  - plugin: PerryLink/dsh-bankrec
+  - plugin: PerryLink/dsh-ap-three-way

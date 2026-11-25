@@ -1,0 +1,19 @@
+# 来源：18126295767-cell（deepseek-harness-ultimate） — https://github.com/18126295767-cell/deepseek-harness-ultimate/blob/main/profile/manifest.json
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: ultimate-productivity
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '日常效率工具组'
+  en: 'Everyday productivity'
+summary:
+  zh: '命令面板、书签、长期记忆与自动续跑，日常更顺手'
+  en: 'Palette, bookmarks, memory, auto-run'
+category:
+  primary: productivity
+  secondary: quick-capture
+members:
+  - plugin: '0xsline/dsh-spotlight'
+  - plugin: 'PerryLink/dsh-memento'
+  - plugin: 'penguin-oo/dsh-bookmarks'
+  - plugin: 'HsiangNianian/dsh-auto-continue'

@@ -1,0 +1,14 @@
+id: wechat-voice-toolchain-part2-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '微信语音娱乐组'
+  en: 'WeChat voice fun'
+summary:
+  zh: '语音包加 QQ 音乐点歌翻唱，发真实语音条'
+  en: 'Voice pack and QQ Music singing'
+category:
+  primary: voice
+members:
+  - plugin: banzhangdeerfenzhiyi/dsh-voicepack-plugin
+  - plugin: banzhangdeerfenzhiyi/dsh-qqmusic-plugin

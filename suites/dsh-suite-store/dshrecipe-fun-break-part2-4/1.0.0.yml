@@ -1,0 +1,15 @@
+id: dshrecipe-fun-break-part2-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '边工作边摸鱼放松'
+  en: 'Slack off while working'
+summary:
+  zh: '开发升级、AI回复加表情，还能小窗看视频摸鱼。'
+  en: 'Dev XP, emoji replies and videos.'
+category:
+  primary: lifestyle
+members:
+  - plugin: lucky8197/dsh-devquest
+  - plugin: hellodigua/dsh-emoji
+  - plugin: Rain-Shuoyu/dsh-client-deep-sneak

@@ -1,0 +1,19 @@
+# 公开发布来源搜集（成员逐字来自发布者原文，未增删）。
+# 来源：https://dshmp.com/zh/plugins/commonworks-dsh-starter
+# 证据：@commonworks/dsh-starter README「场景与插件对照」表 office 模板 members 逐字：@linxin666/dsh-client-ui-task-board、dsh-ppt、dsh-mermaid、dsh-genui；按索引 npm 精确映射。
+id: commonworks-office-helper
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '办公演示助手'
+  en: 'Office Presentation Helper'
+summary:
+  zh: '生成幻灯片、流程图与交互图表，办公汇报更省心。'
+  en: 'Create slides, diagrams and charts.'
+category:
+  primary: office-automation
+members:
+  - plugin: "zhu1090093659/dsh-web#packages/dsh-task-board"
+  - plugin: "STARDUSTLC666/dsh-ppt"
+  - plugin: "MrmoLabs/dsh-mermaid"
+  - plugin: "lhuans/dsh-genui"

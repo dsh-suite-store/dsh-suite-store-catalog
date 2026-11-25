@@ -1,0 +1,19 @@
+# 来源：18126295767-cell（DeepSeek Harness Ultimate） — https://github.com/18126295767-cell/deepseek-harness-ultimate/blob/main/profile/manifest.json
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dsh-ultimate-everyday-productivity
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '日常效率随手包'
+  en: 'Everyday Efficiency Kit'
+summary:
+  zh: '收藏回复、断线自动续跑，还带设计风格与命令面板'
+  en: 'Bookmarks, auto-resume, design, palette'
+category:
+  primary: productivity
+  secondary: quick-capture
+members:
+  - plugin: 'penguin-oo/dsh-bookmarks'
+  - plugin: 'HsiangNianian/dsh-auto-continue'
+  - plugin: 'zhaiyateng/dsh-design-skills'
+  - plugin: '0xsline/dsh-spotlight'

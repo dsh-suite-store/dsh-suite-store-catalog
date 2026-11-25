@@ -1,0 +1,15 @@
+# The validator toolchain is trusted code. Changes to it get maintainer review
+# in addition to CI — CI alone cannot be the trust boundary for the thing that
+# DEFINES the trust boundary.
+#
+# `suites/` is deliberately NOT listed: community contributions are the point
+# of this repository, and every PR there is checked by the gates below.
+/scripts/     @dsh-suite-store/maintainers
+/schema/      @dsh-suite-store/maintainers
+/tests/       @dsh-suite-store/maintainers
+/.github/     @dsh-suite-store/maintainers
+/package.json @dsh-suite-store/maintainers
+/pnpm-lock.yaml @dsh-suite-store/maintainers
+/.pnpmfile.cjs @dsh-suite-store/maintainers
+/.npmrc       @dsh-suite-store/maintainers
+/pnpm-workspace.yaml @dsh-suite-store/maintainers

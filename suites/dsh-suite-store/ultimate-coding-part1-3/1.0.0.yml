@@ -1,0 +1,15 @@
+id: ultimate-coding-part1-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '计划批注与小队派工'
+  en: 'Plan review and task squads'
+summary:
+  zh: '批注计划、用多模型小队派工，并按依赖分波并行执行。'
+  en: 'Review plans, dispatch squads in waves.'
+category:
+  primary: agent-teams
+members:
+  - plugin: titanwings/dsh-plannotator
+  - plugin: toolclub/dsh-agent-team-gui
+  - plugin: february2015/dsh-taskswarm

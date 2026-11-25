@@ -1,0 +1,14 @@
+id: wechat-voice-toolchain-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '微信语音基础组'
+  en: 'WeChat voice starter'
+summary:
+  zh: '微信 Hook 体检加语音包，让机器人开口说中文'
+  en: 'Hook check and voice pack for WeChat'
+category:
+  primary: voice
+members:
+  - plugin: banzhangdeerfenzhiyi/dsh-wechat-deploy-plugin
+  - plugin: banzhangdeerfenzhiyi/dsh-voicepack-plugin

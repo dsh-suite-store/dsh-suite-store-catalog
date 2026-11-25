@@ -1,0 +1,18 @@
+# 来源：863683348（dsh-need-finder） — https://github.com/863683348/dsh-need-finder
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: needfinder-research-stack
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '联网检索工作台'
+  en: 'Web Research Workbench'
+summary:
+  zh: '用真实浏览器、免费搜索和 Tavily 做联网检索。'
+  en: 'Web browsing, free search and Tavily.'
+category:
+  primary: web-search
+  secondary: agent-browser
+members:
+  - plugin: 'wqty123/dsh-browser'
+  - plugin: 'DDDMUC/dsh-free-search'
+  - plugin: '1624318455/dsh-plugin-tavily'

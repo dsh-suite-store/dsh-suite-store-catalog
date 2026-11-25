@@ -1,0 +1,16 @@
+id: dshrecipe-model-routing-part1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '分级路由与模型接入'
+  en: 'Tiered Routing & Model Access'
+summary:
+  zh: '强弱模型分级调度，接入更多模型来源。'
+  en: 'Tiered routing for more model options.'
+category:
+  primary: model-access
+members:
+  - plugin: BruceLanLan/dsh-tier-router
+  - plugin: wenzetan/dsh-llm-newapi
+  - plugin: ringoage/dsh-subagent-model-picker
+  - plugin: kam74515-boop/dsh-everything-oauth

@@ -1,0 +1,20 @@
+# 来源：863683348（dsh-recipe） — https://github.com/863683348/dsh-recipe
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: dshrecipe-market-manager
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '插件发现与一键管理'
+  en: 'Discover & Manage Plugins'
+summary:
+  zh: '在 Web 里发现、安装插件，随时启停。'
+  en: 'Discover, install and toggle plugins.'
+category:
+  primary: plugin-management
+  secondary: marketplace
+members:
+  - plugin: '1e0zj/dsh-plugin-mall'
+  - plugin: 'huguangyu666/dsh-store'
+  - plugin: 'loguhan/dsh-workshop'
+  - plugin: 'tuogusa/dsh-plugin-toggle'
+  - plugin: 'ChengxiuCDP/dsh-plugin-advisor'

@@ -1,0 +1,14 @@
+id: dph-dsh-ui-beautify-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '动态壁纸与海面皮肤'
+  en: 'Live Wallpapers & Ocean Skin'
+summary:
+  zh: '在对话背景播放壁纸，再叠加实时海面皮肤。'
+  en: 'Wallpapers behind chat; live ocean skin.'
+category:
+  primary: ui-beautify
+members:
+  - plugin: elysia395/dsh-wallpaper-engine
+  - plugin: d-dev0101/open-sea-skin

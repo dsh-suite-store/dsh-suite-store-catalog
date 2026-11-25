@@ -1,0 +1,16 @@
+id: dph-dsh-session-manage-part1-4
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '会话管理与安全回退'
+  en: 'Session Management & Safe Rollback'
+summary:
+  zh: '快照回退、导入历史会话，并用会话地图与归档整理。'
+  en: 'Undo, import chats, map & archive.'
+category:
+  primary: context-session
+members:
+  - plugin: lire1131/dsh-undo-savepoint
+  - plugin: liangmianya/dsh-synapse
+  - plugin: Nwflower/dsh-chat-import
+  - plugin: MichengAI/dsh-archive-manager

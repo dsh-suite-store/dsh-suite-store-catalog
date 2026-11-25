@@ -1,0 +1,15 @@
+id: dph-dsh-ui-beautify-part1-3
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '壁纸皮肤与交互界面'
+  en: 'Wallpapers, Skins & Interactive UI'
+summary:
+  zh: '对话背景换成壁纸海面，回复里还能渲染交互组件。'
+  en: 'Skin chat backgrounds; render live UI.'
+category:
+  primary: ui-beautify
+members:
+  - plugin: elysia395/dsh-wallpaper-engine
+  - plugin: d-dev0101/open-sea-skin
+  - plugin: omdsh-dev/dsh-genui

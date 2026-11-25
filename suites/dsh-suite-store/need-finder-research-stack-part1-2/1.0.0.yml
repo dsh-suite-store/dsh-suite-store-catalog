@@ -1,0 +1,14 @@
+id: need-finder-research-stack-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '浏览器检索研究'
+  en: 'Browser research stack'
+summary:
+  zh: '共享真实浏览器加免费搜索，边看网页边查资料。'
+  en: 'Browser and free search for research.'
+category:
+  primary: technical-writing
+members:
+  - plugin: wqty123/dsh-browser
+  - plugin: DDDMUC/dsh-free-search

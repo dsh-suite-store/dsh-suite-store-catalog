@@ -1,0 +1,20 @@
+{
+  "name": "dsh-suite-store-catalog",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Published catalog for dsh-suite-store: submissions in YAML, artifacts in JSON.",
+  "license": "CC0-1.0",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/catalog.mjs check",
+    "build": "node scripts/catalog.mjs build",
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "sync-schema": "node scripts/sync-schema.mjs"
+  },
+  "devDependencies": {
+    "yaml": "^2.6.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

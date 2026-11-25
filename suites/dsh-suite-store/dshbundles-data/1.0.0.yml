@@ -1,0 +1,20 @@
+id: dshbundles-data
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '数据科研工作台'
+  en: 'Data & Research Workbench'
+summary:
+  zh: '看上下文与费用，用多智能体做数学研究，配置可备份'
+  en: 'Context, cost, math teams, config backup'
+
+category:
+  primary: data-science
+
+members:
+  - plugin: 'bowenliang123/dsh-context'
+  - plugin: 'Han-1413141/dsh-cost-meter'
+  - plugin: 'ChongCyrus/Vibe-Mathematics'
+  - plugin: 'NanmiCoder/dsh-agent-teams'
+  - plugin: 'xiajiajun516/dsh-config-manager'

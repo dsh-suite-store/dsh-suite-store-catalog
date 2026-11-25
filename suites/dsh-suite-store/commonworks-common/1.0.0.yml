@@ -1,0 +1,24 @@
+id: commonworks-common
+owner: 'dsh-suite-store'
+version: 1.0.0
+
+title:
+  zh: '通用必备工具箱'
+  en: 'Everyday Essentials Kit'
+summary:
+  zh: '上下文压缩、长期记忆、插件与技能管理等常用工具一站备齐。'
+  en: 'Context, memory, plugins and skills.'
+
+category:
+  primary: getting-started
+
+members:
+  - plugin: 'ranxianglei/billion-context'
+  - plugin: 'bowenliang123/dsh-context'
+  - plugin: 'bufan528/dsh-longterm-memory'
+  - plugin: 'dsh-market/dsh-market'
+  - plugin: 'MichengAI/dsh-skills-manager'
+  - plugin: 'AngelosZou/dsh-python-env'
+  - plugin: 'UncleK/dsh-think-translate'
+  - plugin: 'Y1X1n/dsh-prompt-optimizer'
+  - plugin: 'WSL043/dsh-codex-subscription'

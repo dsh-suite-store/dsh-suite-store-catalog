@@ -1,0 +1,14 @@
+id: dshrecipe-fun-break-part1-2
+owner: dsh-suite-store
+version: 1.0.0
+title:
+  zh: '桌宠与开发小游戏'
+  en: 'Desktop pet and dev game'
+summary:
+  zh: '鲸鱼桌宠陪你工作，开发任务还能赚经验升级。'
+  en: 'Whale pet and XP for your dev work.'
+category:
+  primary: lifestyle
+members:
+  - plugin: nzl153/dsh-pet-whale
+  - plugin: lucky8197/dsh-devquest

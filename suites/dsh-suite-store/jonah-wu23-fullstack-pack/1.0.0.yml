@@ -1,0 +1,23 @@
+# 来源：Jonah-Wu23 — https://github.com/Jonah-Wu23/dsh-fullstack-pack
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: jonah-wu23-fullstack-pack
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '全栈开发工作流'
+  en: 'Full-stack development workflow'
+summary:
+  zh: '查文档、改代码、浏览器验收，再做代码审查。'
+  en: 'Docs, edits, browser checks and review.'
+category:
+  primary: development
+  secondary: code-navigation
+members:
+  - plugin: 'Nrxous/dsh-context7'
+  - plugin: 'Rianico/dsh-better-edit'
+  - plugin: 'omdsh-dev/dsh-custom-tool'
+  - plugin: 'Viger1/dsh-preview'
+  - plugin: 'Viger1/dsh-review'
+  - plugin: 'MJorgin/dsh-agent-conductor'
+  - plugin: 'loadingvx/deepseek-harness-workbench-plugin'
+  - plugin: 'Jonah-Wu23/dsh-bg-carousel'

@@ -1,0 +1,17 @@
+# 来源：863683348（dsh-need-finder） — https://github.com/863683348/dsh-need-finder
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: needfinder-notify-suite
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '任务完成提醒助手'
+  en: 'Task Completion Alerts'
+summary:
+  zh: '任务完成或需要你时，用桌面通知和声音语音提醒。'
+  en: 'Toast, sound and voice alerts when done.'
+category:
+  primary: im-bridges
+members:
+  - plugin: 'pitetow/dsh-notify-on-complete'
+  - plugin: 'huguangyu666/dsh-plugin-notify'
+  - plugin: 'CAOGGL/dsh-ding'

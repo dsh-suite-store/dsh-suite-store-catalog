@@ -1,0 +1,17 @@
+# 来源：PerryLink（dsh-plugins） — https://github.com/PerryLink/dsh-plugins
+# 由维护者搜集导入（发布者原文固定名单，未增删）。
+id: perrylink-legal-ops
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '法务需求与合同审查'
+  en: 'Legal Intake & Contract Review'
+summary:
+  zh: '整理法务收件，建合同条款树并对照清单审查。'
+  en: 'Legal intake and contract clause review.'
+category:
+  primary: legal
+  secondary: clause-lib
+members:
+  - plugin: 'PerryLink/dsh-legal-intake'
+  - plugin: 'PerryLink/dsh-legal-clause'

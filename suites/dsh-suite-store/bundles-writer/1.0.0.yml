@@ -1,0 +1,20 @@
+# 公开发布来源搜集（成员逐字来自发布者原文，未增删）。
+# 来源：https://github.com/LM20230311/dsh-bundles
+# 证据：bundles.json 原文 tagline「写作、文档、办公，专注内容产出」。
+id: bundles-writer
+owner: 'dsh-suite-store'
+version: 1.0.0
+title:
+  zh: '写作者内容工坊'
+  en: 'Writer''s Content Studio'
+summary:
+  zh: '从写作排版到 PDF 修改与提示词管理，专心产出内容。'
+  en: 'Draft, edit PDFs and manage prompts.'
+category:
+  primary: literary-writing
+members:
+  - plugin: "dream-num/dsh-univer-office"
+  - plugin: "zhu1090093659/dsh-web#packages/dsh-skill-explorer"
+  - plugin: "void2anything/dsh-qingagent"
+  - plugin: "Whatsmore-nf/dsh-pdf-edit"
+  - plugin: "master1Sun/dsh-prompt-library"
