@@ -407,8 +407,27 @@ jobs:
   #
   # There is deliberately no checkout, no `pnpm install` and no `pnpm run build`
   # here. The only inputs are the artifact built by the job above and the
-  # secret. Nothing a merged PR contains can execute in this job, so nothing can
-  # set BASH_ENV / GITHUB_PATH / a fake npm for the step that owns the token.
+  # credential. Nothing a merged PR contains can execute in this job, so nothing
+  # can set BASH_ENV / GITHUB_PATH / a fake npm for the step that owns it.
+  #
+  # TWO AUTHENTICATION MODES, chosen by whether NPM_TOKEN exists:
+  #
+  #   token (first release)  The package does not exist on npm yet, and npm
+  #                          cannot configure a trusted publisher for a package
+  #                          that does not exist — the settings page is the
+  #                          package's own. So the very first publish needs a
+  #                          Granular Access Token in `secrets.NPM_TOKEN`.
+  #                          (Automation tokens no longer exist; npm removed
+  #                          every legacy token type in Nov 2025.)
+  #
+  #   OIDC (everything after) With a trusted publisher configured on the package
+  #                          (repository, workflow file, environment), the job
+  #                          asks GitHub for a short-lived OIDC token and npm
+  #                          exchanges it for a publish credential. NO secret is
+  #                          stored. Delete `secrets.NPM_TOKEN` and this path
+  #                          takes over automatically.
+  #
+  # Both modes publish the same bytes the build job produced.
   publish:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -416,11 +435,23 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
+      # Required for OIDC. Harmless when the token path is taken: no OIDC token
+      # is requested unless npm finds no credential and asks for one.
+      id-token: write
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: catalog-pkgroot
           path: pkgroot
+
+      # npm's OIDC support landed in CLI 11.5.1; the version bundled with a
+      # `setup-node` Node 22 release can be older. Pinning npm is what makes the
+      # OIDC path work instead of failing with an unhelpful 401.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install -g npm@^11.5.1
+      - run: npm --version
 
       # Publish from a directory OUTSIDE the download, with a config file that
       # exists nowhere else.
@@ -431,21 +462,25 @@ jobs:
       #   1. run in a temp dir containing ONLY the package — no repo .npmrc and
       #      no package scripts in the config lookup;
       #   2. `--ignore-scripts` so no lifecycle hook runs at publish time;
-      #   3. an explicit `--registry` plus a scoped auth line in a private
-      #      config file, so a stray config cannot redirect the token.
-      #
-      # `env -i` also drops any BASH_ENV/PATH the download could not have set
-      # but a future refactor might: the publish shell starts from a fixed
-      # environment, not an inherited one.
+      #   3. an explicit `--registry`, so a stray config cannot redirect the
+      #      request. The auth line is written ONLY when a token is present.
       - name: Publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Empty when the secret is not configured, which is how the OIDC path
+          # is selected. `secrets` are not interpolated into `if:`, so the
+          # decision is made in the shell.
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           set -euo pipefail
           publish_dir="$(mktemp -d)"
           cp -R pkgroot/. "$publish_dir"/
-          printf 'registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\nalways-auth=true\n' \
-            "$NODE_AUTH_TOKEN" > "$publish_dir/.npmrc"
+          printf 'registry=https://registry.npmjs.org/\n' > "$publish_dir/.npmrc"
+          if [ -n "${NPM_TOKEN:-}" ]; then
+            echo "publishing with NPM_TOKEN"
+            printf '//registry.npmjs.org/:_authToken=%s\nalways-auth=true\n' "$NPM_TOKEN" >> "$publish_dir/.npmrc"
+          else
+            echo "no NPM_TOKEN configured; using OIDC trusted publishing"
+          fi
           cd "$publish_dir"
           # `npm_config_userconfig` pins the config so a stray HOME .npmrc on the
           # runner cannot redirect the request either.

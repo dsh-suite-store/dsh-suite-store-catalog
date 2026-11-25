@@ -72,7 +72,11 @@ describe('publish runs no repository code', () => {
       const text = entry.run ?? ''
       assert.doesNotMatch(text, /\bpnpm (install|run build)\b/u,
         'the publish job must not install or build repository code')
-      assert.doesNotMatch(text, /\bnpm (install|ci)\b/u)
+      // Installing npm ITSELF (`npm install -g npm@…`) is allowed and necessary:
+      // it fetches a tool from the registry, not a package from this repository,
+      // and the OIDC path needs a newer CLI than a Node 22 release ships.
+      assert.doesNotMatch(text, /\bnpm (install|ci)\b(?!\s+-g\s+npm@)/u,
+        'the publish job must not install repository dependencies')
     }
   })
   it('the publish job only reads the artifact the build job produced', () => {

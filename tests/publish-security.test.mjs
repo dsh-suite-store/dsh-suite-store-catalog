@@ -73,11 +73,32 @@ describe('publish hardening', () => {
     assert.match(assemble.run, /allowed = \[/u, 'a key allowlist must be asserted at build time')
   })
 
-  it('does not put NODE_AUTH_TOKEN in the checkout', async () => {
-    // The token may only appear in the isolated publish step.
-    const withToken = steps.filter((entry) => JSON.stringify(entry.env ?? {}).includes('NPM_TOKEN'))
-    assert.equal(withToken.length, 1, `NPM_TOKEN is referenced by ${String(withToken.length)} steps`)
+  it('references the publish token only in the isolated Publish step', async () => {
+    // The token may only appear in the publish step, which runs no repository
+    // code. Naming it `NPM_TOKEN` (not `NODE_AUTH_TOKEN`) is deliberate: the
+    // value is written into a private .npmrc, so it never has to be visible to
+    // npm as an environment credential a stray config could pick up.
+    const withToken = steps.filter((entry) => JSON.stringify(entry.env ?? {}).includes('secrets.NPM_TOKEN'))
+    assert.equal(withToken.length, 1, `secrets.NPM_TOKEN is referenced by ${String(withToken.length)} steps`)
     assert.equal(withToken[0].name, 'Publish')
+  })
+
+  it('publishes with OIDC when no token is configured', async () => {
+    // The package is brand new, so the first publish needs a Granular Access
+    // Token (npm cannot register a trusted publisher for a package that does
+    // not exist yet). Every publish after that should run tokenless, which is
+    // what `id-token: write` plus the token-optional branch provides.
+    const { parse } = await import('yaml')
+    const doc = parse(await readFile(join(repo, '.github/workflows/validate.yml'), 'utf8'))
+    assert.equal(doc.jobs.publish.permissions['id-token'], 'write',
+      'npm trusted publishing needs an OIDC token from the runner')
+    const publish = doc.jobs.publish.steps.find((entry) => entry.name === 'Publish')
+    assert.ok(publish !== undefined, 'no Publish step')
+    // The auth line is written only when a token exists...
+    assert.match(publish.run, /if \[ -n "\$\{NPM_TOKEN:-\}" \]/u,
+      'the step must branch on whether a token is configured')
+    // ...and the OIDC path must not be blocked by a stale token requirement.
+    assert.match(publish.run, /using OIDC trusted publishing/u)
   })
 })
 
