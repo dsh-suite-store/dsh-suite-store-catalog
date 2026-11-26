@@ -1,0 +1,14 @@
+id: "bigfatfish-mini-suite"
+owner: "VIIIO"
+version: "1.0.0"
+title:
+  en: "Big fat fish theme mini suite"
+  zh: "大肥鱼皮肤迷你套装"
+summary:
+  en: "Deepseek girl skin & mini pet"
+  zh: "DSH大肥鱼娘化皮肤+迷你宠物"
+category:
+  primary: "ui-beautify"
+members:
+  - plugin: "Small-tailqwq/dsh-deep-whale#maid-atelier"
+  - plugin: "Witherwithwinter/DeepSeek-Balance-Whale-Widget-Bowl"
