@@ -139,27 +139,33 @@ jobs:
       # one, a duplicate key. Run them across the whole repo so an unrelated
       # edit cannot hide a broken file.
       # The catalogue (11k plugins, ~15 MB) is what turns `plugin: owner/name`
-      # into npm/version/description/capabilities. Cached between runs: it
-      # changes daily, and a 15 MB download per PR is a 15 MB download per PR.
-      - name: Date stamp for the index cache
+      # into npm/version/description/capabilities. Key it to a UTC 30-minute
+      # window: the first PR after each boundary downloads the latest index,
+      # and the rest of that window reuses it.
+      - name: Stamp the index cache window
         id: stamp
-        run: echo "day=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+        run: |
+          slot=$(( $(date -u +%s) / 1800 ))
+          window=$(date -u -d "@$((slot * 1800))" +%Y-%m-%dT%H%MZ)
+          echo "window=$window" >> "$GITHUB_OUTPUT"
 
       - name: Cache the plugin index
+        id: plugin-index-cache
         uses: actions/cache@v4
         with:
           path: .cache/plugins.json
-          # Keyed by day, not by run_id: a run_id key never matches, so every
-          # PR restored the old entry AND saved a fresh ~15 MB one.
-          key: plugin-index-${{ steps.stamp.outputs.day }}
-          restore-keys: plugin-index-
+          # Exact-key only. restore-keys would bring back an older index and
+          # make the cache-hit path skip the fresh download.
+          key: plugin-index-${{ steps.stamp.outputs.window }}
 
       - name: Fetch the plugin index
+        if: steps.plugin-index-cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p .cache
-          if [ ! -s .cache/plugins.json ]; then
-            curl -fsSL --retry 3 --max-time 180 https://awesome-dsh-plugin.com/plugins.json -o .cache/plugins.json
-          fi
+          tmp=$(mktemp .cache/plugins.json.XXXXXX)
+          curl -fsSL --retry 3 --max-time 180 https://awesome-dsh-plugin.com/plugins.json -o "$tmp"
+          test -s "$tmp"
+          mv "$tmp" .cache/plugins.json
 
       # The whole repository, not just the PR's files: a submission that breaks
       # a sibling has to be caught before merge, because the release job would
