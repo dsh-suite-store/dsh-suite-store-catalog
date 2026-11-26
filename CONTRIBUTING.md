@@ -6,6 +6,10 @@ Thanks for helping grow the catalog! / 感谢参与！
 
 Open a PR that adds **one file** / 开**一个文件**的 PR — `suites/<owner>/<suite_id>/<version>.yml`：
 
+**Recommended:** use the [dsh-suite-store](https://github.com/dsh-suite-store/dsh-suite-store) plugin to generate the submission file. Its built-in “Submit a suite” flow collects the required fields and exports catalog-valid YAML. / **推荐使用 [dsh-suite-store](https://github.com/dsh-suite-store/dsh-suite-store) 插件生成投稿文件。** 插件内置「申请收录整合包」流程，会自动收集必填字段并导出符合 catalog 校验规则的 YAML。
+
+**This is the minimal submission template.** For every optional field, see the [full template](https://github.com/dsh-suite-store/dsh-suite-store-catalog/blob/main/templates/full.yml). / **这里展示的是最小投稿模板。** 完整可选字段见 [full template](https://github.com/dsh-suite-store/dsh-suite-store-catalog/blob/main/templates/full.yml)。
+
 ```yaml
 id: my-suite
 owner: your-github-login
