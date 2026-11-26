@@ -265,6 +265,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
           fetch-depth: 1
+          # This job is deliberately powerless: no secrets, contents:read only,
+          # no PR write scope and no artifact upload. Checkout v4 refuses fork
+          # heads under pull_request_target without this explicit narrow opt-in.
+          allow-unsafe-pr-checkout: true
 
       - uses: pnpm/action-setup@v4
         with:

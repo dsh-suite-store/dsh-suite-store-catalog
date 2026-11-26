@@ -127,6 +127,22 @@ describe('workflow permissions', () => {
     }
   })
 
+  it('allows fork-head checkout only in the powerless toolchain job', async () => {
+    const doc = await (await import('yaml')).parse(await readFile(join(repo, '.github/workflows/validate.yml'), 'utf8'))
+    const checkouts = Object.entries(doc.jobs).flatMap(([name, job]) =>
+      (job.steps ?? [])
+        .filter((entry) => entry.uses?.startsWith('actions/checkout') === true)
+        .map((entry) => [name, entry]))
+    const toolchain = checkouts.find(([name]) => name === 'toolchain')?.[1]
+    assert.ok(toolchain !== undefined, 'toolchain must check out the PR head')
+    assert.equal(toolchain.with?.['allow-unsafe-pr-checkout'], true,
+      'checkout v4 refuses fork PR heads under pull_request_target unless this job explicitly opts in')
+    for (const [name, entry] of checkouts) {
+      if (name === 'toolchain') continue
+      assert.notEqual(entry.with?.['allow-unsafe-pr-checkout'], true,
+        `${name}: unsafe fork checkout must stay confined to the powerless toolchain job`)
+    }
+  })
   it('the toolchain job references no secrets', async () => {
     const doc = await (await import('yaml')).parse(await readFile(join(repo, '.github/workflows/validate.yml'), 'utf8'))
     const serialized = JSON.stringify(doc.jobs.toolchain)
