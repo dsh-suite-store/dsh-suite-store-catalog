@@ -11,4 +11,4 @@ category:
   primary: "ui-beautify"
 members:
   - plugin: "Small-tailqwq/dsh-deep-whale#maid-atelier"
-  - plugin: "Witherwithwinter/DeepSeek-Balance-Whale-Widget-Bowl"
+  - plugin: "MeteorNOX/DeepSeek-Balance-Whale-Widget"
