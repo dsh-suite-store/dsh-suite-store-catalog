@@ -20,6 +20,7 @@ import {
   parseSubmissionPath,
   validateSubmission,
 } from '../scripts/validate.mjs'
+import { LOCALIZED_TEXT_MAX } from '../scripts/limits.mjs'
 import { explainYamlError } from '../scripts/yaml-error.mjs'
 
 const root = path.resolve(import.meta.dirname, '..')
@@ -124,12 +125,38 @@ test('a null category is a gate failure, not a TypeError', () => {
   )
 })
 
-test('an overlong summary fails G12', () => {
-  const long = 'x'.repeat(41)
-  assert.throws(
-    () => validateSubmission(submission({ summary: { zh: long, en: 'ok' } }), expected, catalogue, categories),
-    (error) => error.gate === 'G12',
-  )
+test('all user-authored localized fields share one character limit', () => {
+  const at = (n) => ({ zh: 'x'.repeat(n), en: 'x'.repeat(n) })
+  const valid = submission({
+    title: at(LOCALIZED_TEXT_MAX),
+    summary: at(LOCALIZED_TEXT_MAX),
+    description: at(LOCALIZED_TEXT_MAX),
+    postInstall: at(LOCALIZED_TEXT_MAX),
+    capabilityRedLines: [{ text: at(LOCALIZED_TEXT_MAX), members: ['acme/one'] }],
+    members: [
+      { plugin: 'acme/one', reason: at(LOCALIZED_TEXT_MAX) },
+      { plugin: 'acme/two' },
+    ],
+  })
+  const normalized = validateSubmission(valid, expected, catalogue, categories)
+  assert.equal(normalized.title.en.length, LOCALIZED_TEXT_MAX)
+  assert.equal(normalized.members[0].reason.en.length, LOCALIZED_TEXT_MAX)
+
+  const tooLong = 'x'.repeat(LOCALIZED_TEXT_MAX + 1)
+  const cases = [
+    submission({ title: { zh: tooLong, en: 'Title' } }),
+    submission({ summary: { zh: tooLong, en: 'One sentence' } }),
+    submission({ description: { zh: tooLong, en: 'Description' } }),
+    submission({ postInstall: { zh: tooLong, en: 'Installed' } }),
+    submission({ capabilityRedLines: [{ text: { zh: tooLong, en: 'Warning' } }] }),
+    submission({ members: [{ plugin: 'acme/one', reason: { zh: tooLong, en: 'Reason' } }, { plugin: 'acme/two' }] }),
+  ]
+  for (const doc of cases) {
+    assert.throws(
+      () => validateSubmission(doc, expected, catalogue, categories),
+      (error) => error.gate === 'G2' && /longer than 100 characters/u.test(error.message),
+    )
+  }
 })
 
 test('zh is optional and falls back to en; en is required', () => {
@@ -397,6 +424,9 @@ test('syncSchema is line-ending agnostic', () => {
   const lf = onDisk.replace(/\r\n/gu, '\n')
   const crlf = lf.replace(/\n/gu, '\r\n')
   const data = JSON.parse(fs.readFileSync(path.join(root, 'schema/categories.json'), 'utf8'))
+  const schema = JSON.parse(lf)
+  assert.equal(schema.$defs.localized.properties.zh.maxLength, LOCALIZED_TEXT_MAX)
+  assert.equal(schema.$defs.localized.properties.en.maxLength, LOCALIZED_TEXT_MAX)
 
   assert.equal(syncSchema(lf, data).changed, false, 'an LF copy must be in sync')
   assert.equal(syncSchema(crlf, data).changed, false, 'a CRLF copy must be in sync')
@@ -408,4 +438,9 @@ test('syncSchema is line-ending agnostic', () => {
   const changed = { categories: [...data.categories.slice(1)] }
   assert.equal(syncSchema(lf, changed).changed, true)
   assert.equal(syncSchema(crlf, changed).changed, true)
+
+  // The localized maxLength is generated from the one shared limit constant.
+  const staleLimit = lf.replace(`"maxLength": ${LOCALIZED_TEXT_MAX}`, '"maxLength": 99')
+  assert.notEqual(staleLimit, lf)
+  assert.equal(syncSchema(staleLimit, data).changed, true)
 })

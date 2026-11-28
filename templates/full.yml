@@ -4,7 +4,8 @@ id: my-suite
 owner: your-github-login
 version: 1.0.0
 
-# 标题与摘要：双语，en 必填、zh 可选（不写则退回 en）；摘要每种语言 ≤40 字 / Title and summary: bilingual; en required, zh optional (falls back to en); summary ≤40 characters per language
+# 所有的中英文字段（title、summary、description、postInstall、members[].reason、capabilityRedLines[].text）每种语言最多 100 个字符 / All localized fields (title, summary, description, postInstall, members[].reason, capabilityRedLines[].text) are capped at 100 characters per language
+# 双语字段：en 必填、zh 可选（不写则退回 en）/ Bilingual fields: en required, zh optional (falls back to en)
 title:
   zh: 我的整合包
   en: My suite

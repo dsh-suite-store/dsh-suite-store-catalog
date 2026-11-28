@@ -34,22 +34,8 @@
       "$ref": "#/$defs/localized"
     },
     "summary": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/localized"
-        },
-        {
-          "properties": {
-            "zh": {
-              "maxLength": 40
-            },
-            "en": {
-              "maxLength": 40
-            }
-          }
-        }
-      ],
-      "description": "One sentence per language, at most 40 characters each (G12)."
+      "$ref": "#/$defs/localized",
+      "description": "One sentence per language (G12)."
     },
     "description": {
       "$ref": "#/$defs/localized"
@@ -1066,15 +1052,17 @@
       "required": [
         "en"
       ],
-      "description": "`en` is required; `zh` is optional and falls back to `en` (scripts/validate.mjs applies the fallback).",
+      "description": "Every user-authored localized string is capped at 100 characters.",
       "properties": {
         "zh": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 100
         },
         "en": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 100
         }
       }
     },

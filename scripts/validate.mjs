@@ -9,6 +9,7 @@
 
 import { installSpecOf, lookupPlugin, parsePluginRef } from './catalogue.mjs'
 import { assertCategory } from './categories.mjs'
+import { LOCALIZED_TEXT_MAX } from './limits.mjs'
 
 /** Where a contributor finds a plugin and what the gates enforce. */
 const SITE_URL = 'https://awesome-dsh-plugin.com'
@@ -48,8 +49,6 @@ const TOP_LEVEL_FIELDS = new Set([
  */
 const MEMBER_FIELDS = new Set(['plugin', 'reason', 'requires'])
 
-/** G12: one sentence, not a paragraph. */
-const SUMMARY_MAX = 40
 
 /**
  * The only hosts `icon`/`cover` may point at.
@@ -97,7 +96,7 @@ function requireString(value, gate, path, { min = 1, max = 4096 } = {}) {
  *
  * @returns {{ zh: string, en: string }} the pair, with `zh` filled in.
  */
-function requireLocalized(value, gate, path, max = 4096) {
+function requireLocalized(value, gate, path, max = LOCALIZED_TEXT_MAX) {
   if (!isObject(value)) fail(gate, path, 'expected { zh, en }')
   const extra = Object.keys(value).filter((key) => key !== 'zh' && key !== 'en')
   if (extra.length > 0) fail(gate, `${path}.${extra[0]}`, 'unexpected language')
@@ -166,13 +165,8 @@ export function validateSubmission(doc, expected, catalogue, categories) {
   if (!VERSION_PATTERN.test(version)) fail('G3', '$.version', 'must be a plain MAJOR.MINOR.PATCH')
   if (version !== expected.version) fail('G1', '$.version', `must equal the file name "${expected.version}.yml"`)
 
-  const title = requireLocalized(doc.title, 'G2', '$.title', 80)
-  const summary = requireLocalized(doc.summary, 'G2', '$.summary', 200)
-  for (const locale of ['zh', 'en']) {
-    if ([...summary[locale]].length > SUMMARY_MAX) {
-      fail('G12', `$.summary.${locale}`, `longer than ${String(SUMMARY_MAX)} characters`)
-    }
-  }
+  const title = requireLocalized(doc.title, 'G2', '$.title')
+  const summary = requireLocalized(doc.summary, 'G2', '$.summary')
 
   // Category is required; secondary is optional but, when present, must be one
   // of the choices under that primary. The tree comes from schema/categories.json
@@ -303,7 +297,7 @@ export function validateSubmission(doc, expected, catalogue, categories) {
 
     let reason
     if (member.reason !== undefined) {
-      reason = requireLocalized(member.reason, 'G2', `${path}.reason`, 400)
+      reason = requireLocalized(member.reason, 'G2', `${path}.reason`)
     }
 
     // G4: `requires` names a member by its repository pair. Stored as the

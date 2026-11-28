@@ -112,7 +112,7 @@ const GATE_ZH = [
   [/^must equal the file name "(.+)"$/, (m) => `必须等于文件名 "${m[1]}"`],
   [/^is not a GitHub login$/, () => '不是合法的 GitHub 登录名'],
   [/^must be a plain MAJOR\.MINOR\.PATCH$/, () => '必须是标准的 MAJOR.MINOR.PATCH 版本号'],
-  [/^longer than 40 characters$/, () => 'summary 超过 40 个字符（每种语言）'],
+
   [/^required — choose one of the slugs in schema\/categories\.json$/, () => 'category 必填，必须从 schema/categories.json 的一级分类中选择'],
   [/^required$/, () => 'category.primary 必填'],
   [/^"(.+)" is not one of the \d+ categories in schema\/categories\.json$/, (m) => `一级分类 "${m[1]}" 不在 schema/categories.json 的分类列表中`],

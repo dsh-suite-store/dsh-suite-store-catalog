@@ -17,6 +17,8 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
+import { LOCALIZED_TEXT_MAX } from './limits.mjs'
+
 const root = resolve(import.meta.dirname, '..')
 const CATEGORIES = resolve(root, 'schema/categories.json')
 const SCHEMA = resolve(root, 'schema/bundle.schema.json')
@@ -24,6 +26,8 @@ const SCHEMA = resolve(root, 'schema/bundle.schema.json')
 /** Marker around the generated region, so a human knows not to edit it. */
 const BEGIN = '    "category": {'
 const END = '    "tags": {'
+const LOCALIZED_BEGIN = '    "localized": {'
+const LOCALIZED_END = '    "member": {'
 
 /**
  * The `category` property, with the primary enum and one if/then block per
@@ -69,12 +73,32 @@ function categorySection(data) {  const primaries = data.categories.map((entry) 
   return `${BEGIN}\n${body}\n    }`
 }
 
+/**
+ * The shared bilingual string definition. Every user-authored localized
+ * field references this one, so its maxLength is the single schema-side cap.
+ */
+function localizedSection(max) {
+  const property = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['en'],
+    description: `Every user-authored localized string is capped at ${String(max)} characters.`,
+    properties: {
+      zh: { type: 'string', minLength: 1, maxLength: max },
+      en: { type: 'string', minLength: 1, maxLength: max },
+    },
+  }
+  const lines = JSON.stringify(property, null, 2).split('\n')
+  const body = lines.slice(1, -1).map((line) => `    ${line}`).join('\n')
+  return `${LOCALIZED_BEGIN}\n${body}\n    }`
+}
+
 /** Replace the region between the two markers, keeping the rest byte-identical. */
-function regenerate(source, section) {
-  const begin = source.indexOf(BEGIN)
-  const end = source.indexOf(END)
+function regenerate(source, section, beginMarker = BEGIN, endMarker = END) {
+  const begin = source.indexOf(beginMarker)
+  const end = source.indexOf(endMarker)
   if (begin === -1 || end === -1 || end < begin) {
-    throw new Error(`cannot find the generated region in ${SCHEMA} (looked for ${BEGIN} … ${END})`)
+    throw new Error(`cannot find the generated region in ${SCHEMA} (looked for ${beginMarker} ? ${endMarker})`)
   }
   return `${source.slice(0, begin)}${section},\n${source.slice(end)}`
 }
@@ -94,7 +118,12 @@ function regenerate(source, section) {
 export function syncSchema(raw, data) {
   const eol = raw.includes('\r\n') ? '\r\n' : '\n'
   const source = raw.replace(/\r\n/gu, '\n')
-  const text = regenerate(source, categorySection(data))
+  const text = regenerate(
+    regenerate(source, categorySection(data), BEGIN, END),
+    localizedSection(LOCALIZED_TEXT_MAX),
+    LOCALIZED_BEGIN,
+    LOCALIZED_END,
+  )
   // Round-trip: a broken generator must not be able to commit invalid JSON.
   JSON.parse(text)
   return { text, eol, changed: text !== source }
